@@ -10,12 +10,13 @@ A 3D endless runner game written in C with raylib. Obstacles come from a recycle
 
 Before you start development, install these on your Linux OS:
 
-| Dependency                                                                                          | Version    | Used for                                  | How to install                                                               |
-| --------------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------- | ---------------------------------------------------------------------------- |
-| [premake5](https://premake.github.io/)                                                              | 5.0-beta3+ | Generating the Makefiles from `build.lua` | Install `premake` with your package manager, or download it from the website |
-| [GNU Make](https://www.gnu.org/software/make/)                                                      | any        | Running the generated Makefiles           | Install `make` with your package manager                                     |
-| [GCC](https://gcc.gnu.org/)                                                                         | 14+        | Compiling the C sources (`-std=c23`)      | Install `gcc` with your package manager                                      |
-| [Bash](https://www.gnu.org/software/bash/) and [coreutils](https://www.gnu.org/software/coreutils/) | any        | Running the scripts in `scripts/linux`    | Already installed on most Linux distributions                                |
+| Dependency                                           | Version    | Used for                                        | How to install                                                               |
+| ---------------------------------------------------- | ---------- | ----------------------------------------------- | ---------------------------------------------------------------------------- |
+| [premake5](https://premake.github.io/)               | 5.0-beta3+ | Generating the Makefiles from `build.lua`       | Install `premake` with your package manager, or download it from the website |
+| [GNU Make](https://www.gnu.org/software/make/)       | any        | Running the generated Makefiles                 | Install `make` with your package manager                                     |
+| [GCC](https://gcc.gnu.org/)                          | 14+        | Compiling the C sources (`-std=c23`)            | Install `gcc` with your package manager                                      |
+| [Bash](https://www.gnu.org/software/bash/)           | any        | Running the scripts in `scripts/linux`          | Already installed on most Linux distributions                                |
+| [coreutils](https://www.gnu.org/software/coreutils/) | any        | Providing `nproc` and `dirname` for the scripts | Already installed on most Linux distributions                                |
 
 All of these binaries should be in your `PATH`.
 
