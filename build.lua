@@ -1,6 +1,7 @@
 -- stop: lsp
 -- stop: format
 
+
 local build_dir = "build/%{cfg.system}-%{cfg.architecture}"
 local bin_dir = build_dir .. "/bin/%{cfg.buildcfg}"
 local obj_dir = build_dir .. "/obj/%{cfg.buildcfg}/%{prj.name}"
@@ -41,22 +42,20 @@ project "raylib"
     cdialect "C99"
     warnings "Off"
 
-    local raylib_dir = "vendor/raylib/src"
-
     files {
-        raylib_dir .. "/rcore.c",
-        raylib_dir .. "/rshapes.c",
-        raylib_dir .. "/rtextures.c",
-        raylib_dir .. "/rtext.c",
-        raylib_dir .. "/rmodels.c",
-        raylib_dir .. "/raudio.c",
-        raylib_dir .. "/utils.c",
-        raylib_dir .. "/rglfw.c",
+        "vendor/raylib/src/rcore.c",
+        "vendor/raylib/src/rshapes.c",
+        "vendor/raylib/src/rtextures.c",
+        "vendor/raylib/src/rtext.c",
+        "vendor/raylib/src/rmodels.c",
+        "vendor/raylib/src/raudio.c",
+        "vendor/raylib/src/utils.c",
+        "vendor/raylib/src/rglfw.c",
     }
 
     includedirs {
-        raylib_dir,
-        raylib_dir .. "/external/glfw/include",
+        "vendor/raylib/src",
+        "vendor/raylib/src/external/glfw/include",
     }
 
     defines { "PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33" }
