@@ -3,15 +3,15 @@
 const int window_width = 1600;
 const int window_height = 900;
 
-void init() {
+static void init(void) {
     InitWindow(window_width, window_height, "runnr.");
 }
 
-void close() {
+static void close(void) {
     CloseWindow();
 }
 
-void run() {
+static void run(void) {
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(WHITE);
