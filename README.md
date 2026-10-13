@@ -1,8 +1,6 @@
 # runnr
 
-A 3D endless runner game written in C with [raylib](https://www.raylib.com/). Obstacles come from a recycled object pool.
-
-The game currently builds for Linux desktop. A WebAssembly build with Emscripten, so it can be played in the browser, is planned.
+A 3D endless runner game written in C with raylib. Obstacles come from a recycled object pool, and the game is compiled to WebAssembly with Emscripten so it can be played in the browser.
 
 ## Getting started
 
