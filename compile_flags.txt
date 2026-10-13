@@ -1,0 +1,7 @@
+-xc
+-std=c23
+-Wall
+-Wextra
+-DDEBUG
+-isystem
+vendor/raylib/src
