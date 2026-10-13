@@ -34,7 +34,7 @@ Before you start development, install these on your Linux OS:
 | [premake5](https://premake.github.io/)               | 5.0-beta3+ | Generating the Makefiles from `build.lua`       | Install `premake` with your package manager, or download it from the website |
 | [GNU Make](https://www.gnu.org/software/make/)       | any        | Running the generated Makefiles                 | Install `make` with your package manager                                     |
 | [GCC](https://gcc.gnu.org/)                          | 14+        | Compiling the C sources (`-std=c23`)            | Install `gcc` with your package manager                                      |
-| [Bash](https://www.gnu.org/software/bash/)           | any        | Running the scripts in `script/linux`           | Already installed on most Linux distributions                                |
+| [Bash](https://www.gnu.org/software/bash/)           | any        | Running the scripts in `scripts/linux`          | Already installed on most Linux distributions                                |
 | [coreutils](https://www.gnu.org/software/coreutils/) | any        | Providing `nproc` and `dirname` for the scripts | Already installed on most Linux distributions                                |
 
 All of these binaries should be in your `PATH`.
@@ -48,10 +48,10 @@ sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
 #### Building
 
 ```sh
-script/linux/dev.sh       # build debug and run
-script/linux/debug.sh     # build debug
-script/linux/release.sh   # build release
-script/linux/clean.sh     # remove generated build files
+scripts/linux/dev.sh       # build debug and run
+scripts/linux/debug.sh     # build debug
+scripts/linux/release.sh   # build release
+scripts/linux/clean.sh     # remove generated build files
 ```
 
 Binaries are written to `build/linux-x86_64/bin/<config>/runnr`.
@@ -60,8 +60,10 @@ Binaries are written to `build/linux-x86_64/bin/<config>/runnr`.
 
 ```
 src/        game sources
+assets/     models, textures, sounds and fonts loaded by the game
 vendor/     third-party libraries as git submodules, versions in vendor/versions
-script/     build scripts, one folder per platform
+scripts/    build scripts, one folder per platform
+docs/       project notes, like the candidate asset packs in docs/assets.md
 build.lua   premake build definition
 ```
 

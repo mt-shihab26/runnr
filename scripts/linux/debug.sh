@@ -4,6 +4,6 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 
-script/linux/generate.sh
+scripts/linux/generate.sh
 
-make config=release -j"$(nproc)" "$@"
+make config=debug -j"$(nproc)" "$@"

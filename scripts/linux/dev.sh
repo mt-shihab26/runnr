@@ -4,6 +4,6 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 
-script/linux/debug.sh
+scripts/linux/debug.sh
 
 exec build/linux-x86_64/bin/debug/runnr "$@"
