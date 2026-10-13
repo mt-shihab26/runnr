@@ -12,6 +12,16 @@ workspace "runnr"
     targetdir(bin_dir)
     objdir(obj_dir)
 
+    filter "configurations:debug"
+        defines { "DEBUG" }
+        symbols "On"
+
+    filter "configurations:release"
+        defines { "NDEBUG" }
+        optimize "On"
+
+    filter {}
+
 
 project "runnr"
     kind "ConsoleApp"
@@ -24,14 +34,6 @@ project "runnr"
 
     filter "system:linux"
         links { "GL", "m", "pthread", "dl", "rt", "X11" }
-
-    filter "configurations:debug"
-        defines { "DEBUG" }
-        symbols "On"
-
-    filter "configurations:release"
-        defines { "NDEBUG" }
-        optimize "On"
 
     filter {}
 
@@ -49,16 +51,14 @@ project "raylib"
         "vendor/raylib/src/rtext.c",
         "vendor/raylib/src/rmodels.c",
         "vendor/raylib/src/raudio.c",
-        "vendor/raylib/src/utils.c",
-        "vendor/raylib/src/rglfw.c",
     }
 
-    includedirs {
-        "vendor/raylib/src",
-        "vendor/raylib/src/external/glfw/include",
-    }
+    includedirs { "vendor/raylib/src" }
 
-    defines { "PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33" }
+    filter "system:linux"
+        files { "vendor/raylib/src/rglfw.c" }
+        includedirs { "vendor/raylib/src/external/glfw/include" }
+        defines { "PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
 
     filter {}
 
