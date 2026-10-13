@@ -26,20 +26,13 @@ The pinned version and commit of each vendored library are listed in `vendor/ver
 
 #### Dependencies
 
-Before you start development, install these on your Linux OS:
+On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and gcc compile the C23 sources, and bash runs the scripts in `scripts/linux`.
 
-| Dependency                                           | Version    | Used for                                        | How to install                                                               |
-| ---------------------------------------------------- | ---------- | ----------------------------------------------- | ---------------------------------------------------------------------------- |
-| [Git](https://git-scm.com/)                          | any        | Cloning the repository and its submodules       | Install `git` with your package manager                                      |
-| [premake5](https://premake.github.io/)               | 5.0-beta3+ | Generating the Makefiles from `build.lua`       | Install `premake` with your package manager, or download it from the website |
-| [GNU Make](https://www.gnu.org/software/make/)       | any        | Running the generated Makefiles                 | Install `make` with your package manager                                     |
-| [GCC](https://gcc.gnu.org/)                          | 14+        | Compiling the C sources (`-std=c23`)            | Install `gcc` with your package manager                                      |
-| [Bash](https://www.gnu.org/software/bash/)           | any        | Running the scripts in `scripts/linux`          | Already installed on most Linux distributions                                |
-| [coreutils](https://www.gnu.org/software/coreutils/) | any        | Providing `nproc` and `dirname` for the scripts | Already installed on most Linux distributions                                |
+```sh
+sudo pacman -S --needed git premake make gcc bash
+```
 
-All of these binaries should be in your `PATH`.
-
-raylib is built from source, so you also need the X11 and OpenGL development headers. On Arch Linux:
+raylib is built from source along with the game, so it also needs the X11 and OpenGL development headers.
 
 ```sh
 sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
