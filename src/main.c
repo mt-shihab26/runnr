@@ -1,7 +1,13 @@
-#include <stdio.h>
+#include <raylib.h>
 
 int main() {
-    printf("Hello World\n");
+    InitWindow(500, 500, "Hello runnr.");
+
+    while (!WindowShouldClose()) {
+        ClearBackground(BLACK);
+    }
+
+    CloseWindow();
 
     return 0;
 }
