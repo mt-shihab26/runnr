@@ -1,8 +1,26 @@
 # runnr
 
-A 3D endless runner game written in C with raylib. Obstacles come from a recycled object pool, and the game is compiled to WebAssembly with Emscripten so it can be played in the browser.
+A 3D endless runner game written in C with [raylib](https://www.raylib.com/). Obstacles come from a recycled object pool.
 
-## Development
+The game currently builds for Linux desktop. A WebAssembly build with Emscripten, so it can be played in the browser, is planned.
+
+## Getting started
+
+### Cloning
+
+All third-party libraries are included as git submodules in `vendor/`. Clone the repository with its submodules:
+
+```sh
+git clone --recursive https://github.com/mt-shihab26/runnr.git
+```
+
+If you already cloned it without `--recursive`, fetch the submodules:
+
+```sh
+git submodule update --init --recursive
+```
+
+The pinned version and commit of each vendored library are listed in `vendor/versions`.
 
 ### Linux
 
@@ -27,22 +45,6 @@ raylib is built from source, so you also need the X11 and OpenGL development hea
 sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
 ```
 
-#### Cloning
-
-All third-party libraries are included as git submodules in `vendor/`. Clone the repository with its submodules:
-
-```sh
-git clone --recursive https://github.com/mt-shihab26/runnr.git
-```
-
-If you already cloned it without `--recursive`, fetch the submodules:
-
-```sh
-git submodule update --init --recursive
-```
-
-The pinned version and commit of each vendored library are listed in `vendor/versions`.
-
 #### Building
 
 ```sh
@@ -53,3 +55,16 @@ script/linux/clean.sh     # remove generated build files
 ```
 
 Binaries are written to `build/linux-x86_64/bin/<config>/runnr`.
+
+## Project layout
+
+```
+src/        game sources
+vendor/     third-party libraries as git submodules, versions in vendor/versions
+script/     build scripts, one folder per platform
+build.lua   premake build definition
+```
+
+## License
+
+runnr is released under the [MIT License](LICENSE).
