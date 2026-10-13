@@ -27,9 +27,10 @@ project "runnr"
     kind "ConsoleApp"
     language "C"
     cdialect "C23"
+    warnings "Extra"
 
     files { "src/**.h", "src/**.c" }
-    includedirs { "vendor/raylib/src" }
+    externalincludedirs { "vendor/raylib/src" }
     links { "raylib" }
 
     filter "system:linux"
@@ -58,7 +59,7 @@ project "raylib"
     filter "system:linux"
         files { "vendor/raylib/src/rglfw.c" }
         includedirs { "vendor/raylib/src/external/glfw/include" }
-        defines { "PLATFORM_DESKTOP", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
+        defines { "PLATFORM_DESKTOP_GLFW", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
 
     filter {}
 
