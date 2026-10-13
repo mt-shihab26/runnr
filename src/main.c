@@ -1,7 +1,7 @@
 #include <raylib.h>
 
 const int window_width = 1600;
-    const int window_height = 900;
+const int window_height = 900;
 
 static void init(void) {
     InitWindow(window_width, window_height, "runnr.");
