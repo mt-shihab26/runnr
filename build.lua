@@ -36,6 +36,12 @@ project "runnr"
     filter "system:linux"
         links { "GL", "m", "pthread", "dl", "rt", "X11" }
 
+    filter "configurations:release"
+        postbuildcommands {
+            -- the static libraries are linked into the binary, so they are not needed to run it
+            "{DELETE} %{cfg.targetdir}/*.a",
+        }
+
     filter {}
 
 
