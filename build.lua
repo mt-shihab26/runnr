@@ -6,6 +6,7 @@ local build_dir = "build/%{cfg.system}-%{cfg.architecture}"
 local bin_dir = build_dir .. "/bin/%{cfg.buildcfg}"
 local obj_dir = build_dir .. "/obj/%{cfg.buildcfg}/%{prj.name}"
 
+
 workspace "runnr"
     configurations { "debug", "release" }
     architecture "x86_64"
@@ -29,7 +30,8 @@ project "runnr"
     cppdialect "C++23"
     warnings "Extra"
 
-    files { "src/**.hpp", "src/**.cpp" }
+    files { "include/**.hpp", "src/**.hpp", "src/**.cpp" }
+    includedirs { "include" }
     externalincludedirs { "vendor/include" }
     links { "raylib" }
 
