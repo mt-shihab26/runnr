@@ -52,19 +52,19 @@ project "raylib"
     warnings "Off"
 
     files {
-        "vendor/src/raylib/src/rcore.c",
-        "vendor/src/raylib/src/rshapes.c",
-        "vendor/src/raylib/src/rtextures.c",
-        "vendor/src/raylib/src/rtext.c",
-        "vendor/src/raylib/src/rmodels.c",
-        "vendor/src/raylib/src/raudio.c",
+        "vendor/upstream/raylib/src/rcore.c",
+        "vendor/upstream/raylib/src/rshapes.c",
+        "vendor/upstream/raylib/src/rtextures.c",
+        "vendor/upstream/raylib/src/rtext.c",
+        "vendor/upstream/raylib/src/rmodels.c",
+        "vendor/upstream/raylib/src/raudio.c",
     }
 
-    includedirs { "vendor/src/raylib/src" }
+    includedirs { "vendor/upstream/raylib/src" }
 
     filter "system:linux"
-        files { "vendor/src/raylib/src/rglfw.c" }
-        includedirs { "vendor/src/raylib/src/external/glfw/include" }
+        files { "vendor/upstream/raylib/src/rglfw.c" }
+        includedirs { "vendor/upstream/raylib/src/external/glfw/include" }
         defines { "PLATFORM_DESKTOP_GLFW", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
 
     filter {}

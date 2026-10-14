@@ -8,7 +8,7 @@ Obstacles come from a recycled object pool, and the game is compiled to WebAssem
 
 ### Cloning
 
-All third-party libraries are included as git submodules in `vendor/src`. Clone the repository with its full history, then fetch only the pinned commit of each submodule:
+All third-party libraries are included as git submodules in `vendor/upstream`. Clone the repository with its full history, then fetch only the pinned commit of each submodule:
 
 ```sh
 git clone https://github.com/mt-shihab26/runnr.git
