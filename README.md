@@ -8,17 +8,15 @@ Obstacles come from a recycled object pool, and the game is compiled to WebAssem
 
 ### Cloning
 
-All third-party libraries are included as git submodules in `vendor/`. Clone the repository with its submodules:
+All third-party libraries are included as git submodules in `vendor/src`. Clone the repository with its full history, then fetch only the pinned commit of each submodule:
 
 ```sh
-git clone --recursive --shallow-submodules https://github.com/mt-shihab26/runnr.git
+git clone https://github.com/mt-shihab26/runnr.git
+cd runnr
+git submodule update --init --recursive --depth 1 --single-branch
 ```
 
-If you already cloned it without `--recursive`, fetch the submodules:
-
-```sh
-git submodule update --init --recursive --depth 1
-```
+Keep `--single-branch`. Without it git fetches the tip of every branch of every submodule, which makes raylib about 260 MB instead of about 54 MB. `git clone --recursive` has no flag for this, which is why the submodules are fetched as a separate step.
 
 The pinned version and commit of each vendored library are listed in `vendor/versions`.
 
