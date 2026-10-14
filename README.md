@@ -11,13 +11,13 @@ Obstacles come from a recycled object pool, and the game is compiled to WebAssem
 All third-party libraries are included as git submodules in `vendor/`. Clone the repository with its submodules:
 
 ```sh
-git clone --recursive https://github.com/mt-shihab26/runnr.git
+git clone --recursive --shallow-submodules https://github.com/mt-shihab26/runnr.git
 ```
 
 If you already cloned it without `--recursive`, fetch the submodules:
 
 ```sh
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 ```
 
 The pinned version and commit of each vendored library are listed in `vendor/versions`.
