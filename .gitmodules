@@ -1,4 +1,4 @@
-[submodule "vendor/raylib"]
+[submodule "vendor/upstream/raylib"]
 	path = vendor/upstream/raylib
 	url = https://github.com/raysan5/raylib.git
 	shallow = true
