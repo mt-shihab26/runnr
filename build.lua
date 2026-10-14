@@ -31,7 +31,7 @@ project "runnr"
     warnings "Extra"
 
     files { "include/**.hpp", "src/**.hpp", "src/**.cpp" }
-    includedirs { "include" }
+    includedirs { "src", "include" }
     externalincludedirs { "vendor/include" }
     links { "raylib" }
 
