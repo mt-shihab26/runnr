@@ -4,4 +4,4 @@
 -Wextra
 -DDEBUG
 -isystem
-vendor/raylib/src
+vendor/include

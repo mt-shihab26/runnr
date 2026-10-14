@@ -30,7 +30,7 @@ project "runnr"
     warnings "Extra"
 
     files { "src/**.hpp", "src/**.cpp" }
-    externalincludedirs { "vendor/raylib/src" }
+    externalincludedirs { "vendor/include" }
     links { "raylib" }
 
     filter "system:linux"
@@ -52,19 +52,19 @@ project "raylib"
     warnings "Off"
 
     files {
-        "vendor/raylib/src/rcore.c",
-        "vendor/raylib/src/rshapes.c",
-        "vendor/raylib/src/rtextures.c",
-        "vendor/raylib/src/rtext.c",
-        "vendor/raylib/src/rmodels.c",
-        "vendor/raylib/src/raudio.c",
+        "vendor/src/raylib/src/rcore.c",
+        "vendor/src/raylib/src/rshapes.c",
+        "vendor/src/raylib/src/rtextures.c",
+        "vendor/src/raylib/src/rtext.c",
+        "vendor/src/raylib/src/rmodels.c",
+        "vendor/src/raylib/src/raudio.c",
     }
 
-    includedirs { "vendor/raylib/src" }
+    includedirs { "vendor/src/raylib/src" }
 
     filter "system:linux"
-        files { "vendor/raylib/src/rglfw.c" }
-        includedirs { "vendor/raylib/src/external/glfw/include" }
+        files { "vendor/src/raylib/src/rglfw.c" }
+        includedirs { "vendor/src/raylib/src/external/glfw/include" }
         defines { "PLATFORM_DESKTOP_GLFW", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
 
     filter {}
