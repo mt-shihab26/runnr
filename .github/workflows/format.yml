@@ -25,7 +25,7 @@ jobs:
       - name: Format code
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git ls-files -z 'src/*.c' 'src/*.h' | xargs -0 clang-format -i
+          git ls-files -z 'src/*.cpp' 'src/*.hpp' | xargs -0 clang-format -i
 
       - name: Commit Changes
         uses: stefanzweifel/git-auto-commit-action@v7

@@ -25,11 +25,11 @@ workspace "runnr"
 
 project "runnr"
     kind "ConsoleApp"
-    language "C"
-    cdialect "C23"
+    language "C++"
+    cppdialect "C++23"
     warnings "Extra"
 
-    files { "src/**.h", "src/**.c" }
+    files { "src/**.hpp", "src/**.cpp" }
     externalincludedirs { "vendor/raylib/src" }
     links { "raylib" }
 

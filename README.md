@@ -1,6 +1,6 @@
 # runnr
 
-A 3D endless runner game written in C with raylib.
+A 3D endless runner game written in C/C++ with raylib.
 
 Obstacles come from a recycled object pool, and the game is compiled to WebAssembly with Emscripten so it can be played in the browser.
 
@@ -26,7 +26,7 @@ The pinned version and commit of each vendored library are listed in `vendor/ver
 
 #### Dependencies
 
-On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and gcc compile the C23 sources, and bash runs the scripts in `scripts/linux`.
+On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and gcc (g++) compile the C++23 game sources and the C99 raylib sources, and bash runs the scripts in `scripts/linux`.
 
 ```sh
 sudo pacman -S --needed git premake make gcc bash
