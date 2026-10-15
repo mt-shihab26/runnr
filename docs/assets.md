@@ -1,6 +1,6 @@
 # Assets
 
-Candidate 3D asset packs for runnr from [Kenney](https://kenney.nl/assets). All Kenney assets are [CC0](https://creativecommons.org/publicdomain/zero/1.0/), so they can be used in the game without credit.
+Candidate 3D asset packs for runnr. from [Kenney](https://kenney.nl/assets). All Kenney assets are [CC0](https://creativecommons.org/publicdomain/zero/1.0/), so they can be used in the game without credit.
 
 Browse the full [3D category](https://kenney.nl/assets/category:3D) rather than the keyword search, which doesn't filter by keyword.
 

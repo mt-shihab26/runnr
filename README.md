@@ -1,4 +1,4 @@
-# runnr
+# runnr.
 
 A 3D endless runner game written in C/C++ with raylib.
 
@@ -64,13 +64,13 @@ Binaries are written to `build/linux-x86_64/bin/<config>/runnr`.
 ```
 src/        game sources
 include/    game headers
-assets/     models, textures, sounds and fonts loaded by the game
+assets/     models, textures, sounds, fonts and shaders loaded by the game
 vendor/     third-party libraries as git submodules, versions in vendor/versions
 scripts/    build scripts, one folder per platform
-docs/       project notes, like the candidate asset packs in docs/assets.md
+docs/       project notes, docs, plans, etc
 build.lua   premake build definition
 ```
 
 ## License
 
-runnr is released under the [MIT License](LICENSE).
+runnr. is released under the [MIT License](LICENSE).
