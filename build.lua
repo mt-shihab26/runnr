@@ -13,6 +13,9 @@ workspace "runnr"
     targetdir(bin_dir)
     objdir(obj_dir)
 
+    filter "system:linux"
+        toolset "clang"
+
     filter "configurations:debug"
         defines { "DEBUG" }
         symbols "On"
