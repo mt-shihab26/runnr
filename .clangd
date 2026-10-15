@@ -1,7 +1,5 @@
 Diagnostics:
     UnusedIncludes: Strict
-    ClangTidy:
-        Add: [bugprone-*, readability-*]
 
 InlayHints:
     ParameterNames: Yes
