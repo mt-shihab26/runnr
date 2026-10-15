@@ -2,14 +2,13 @@
 
 <!--toc:start-->
 
-- [runnr](#runnr)
-    - [Getting started](#getting-started)
-        - [Cloning](#cloning)
-        - [Linux](#linux)
-            - [Dependencies](#dependencies)
-            - [Building](#building)
-    - [Project layout](#project-layout)
-    - [License](#license)
+- [Getting started](#getting-started)
+    - [Cloning](#cloning)
+    - [Linux](#linux)
+        - [Dependencies](#dependencies)
+        - [Building](#building)
+- [Project layout](#project-layout)
+- [License](#license)
 
 <!--toc:end-->
 
