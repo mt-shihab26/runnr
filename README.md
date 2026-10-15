@@ -1,5 +1,18 @@
 # runnr
 
+<!--toc:start-->
+
+- [runnr](#runnr)
+    - [Getting started](#getting-started)
+        - [Cloning](#cloning)
+        - [Linux](#linux)
+            - [Dependencies](#dependencies)
+            - [Building](#building)
+    - [Project layout](#project-layout)
+    - [License](#license)
+
+<!--toc:end-->
+
 A 3D endless runner game written in C/C++ with raylib.
 
 Obstacles come from a recycled object pool, and the game is compiled to WebAssembly with Emscripten so it can be played in the browser.
@@ -24,10 +37,10 @@ The pinned version and commit of each vendored library are listed in `vendor/ver
 
 #### Dependencies
 
-On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and gcc (g++) compile the C++23 game sources and the C99 raylib sources, and bash runs the scripts in `scripts/linux`.
+On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and clang (clang++) compile the C++23 game sources and the C99 raylib sources, and bash runs the scripts in `scripts/linux`. gcc is needed as well, because clang uses its C++ standard library (libstdc++).
 
 ```sh
-sudo pacman -S --needed git premake make gcc bash
+sudo pacman -S --needed git premake make clang gcc bash
 ```
 
 raylib is built from source along with the game, so it also needs the X11 and OpenGL development headers.
@@ -51,6 +64,7 @@ Binaries are written to `build/linux-x86_64/bin/<config>/runnr`.
 
 ```
 src/        game sources
+include/    game headers
 assets/     models, textures, sounds and fonts loaded by the game
 vendor/     third-party libraries as git submodules, versions in vendor/versions
 scripts/    build scripts, one folder per platform
