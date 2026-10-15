@@ -77,7 +77,26 @@ newaction {
     description = "Remove all generated build files",
     execute = function()
         os.rmdir("build")
+        os.rmdir(".cache")
+        -- GNU Make
         os.remove("Makefile")
         os.remove("*.make")
+        -- Visual Studio
+        os.remove("*.sln")
+        os.remove("*.slnx")
+        os.remove("*.vcxproj")
+        os.remove("*.vcxproj.filters")
+        os.remove("*.vcxproj.user")
+        os.rmdir(".vs")
+        -- Xcode
+        for _, dir in ipairs(os.matchdirs("*.xcodeproj")) do os.rmdir(dir) end
+        for _, dir in ipairs(os.matchdirs("*.xcworkspace")) do os.rmdir(dir) end
+        -- Ninja
+        os.remove("*.ninja")
+        os.remove(".ninja_deps")
+        os.remove(".ninja_log")
+        -- CodeLite
+        os.remove("*.workspace")
+        os.remove("*.project")
     end,
 }
