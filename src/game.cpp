@@ -18,7 +18,9 @@ bool Game::running() {
 }
 
 void Game::update() {
-    //
+    float dt = GetFrameTime();
+
+    camera.update(dt);
 }
 
 void Game::render() {

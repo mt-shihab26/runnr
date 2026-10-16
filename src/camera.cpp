@@ -12,4 +12,14 @@ Camera::Camera() {
     object.projection = CAMERA_PERSPECTIVE;        // Camera mode type
 }
 
+void Camera::update(float dt) {
+    if (GetGestureDetected() == GESTURE_DRAG) {
+        Vector2 drag = GetGestureDragVector();
+
+        TraceLog(LOG_INFO, "%f %f", drag.x, drag.y);
+        object.position.x += -drag.x;
+        object.position.z += -drag.y;
+    }
+}
+
 }
