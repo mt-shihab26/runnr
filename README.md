@@ -57,7 +57,7 @@ scripts/linux/release.sh   # build release
 scripts/linux/clean.sh     # remove generated build files
 ```
 
-Binaries are written to `build/linux-x86_64/bin/<config>/runnr`.
+Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
 
 ## Project layout
 

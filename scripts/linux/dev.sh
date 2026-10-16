@@ -6,4 +6,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 
 scripts/linux/debug.sh
 
-exec build/linux-x86_64/bin/debug/runnr "$@"
+exec .build/linux-x86_64/bin/debug/runnr "$@"

@@ -2,7 +2,7 @@
 -- stop: format
 
 
-local build_dir = "build/%{cfg.system}-%{cfg.architecture}"
+local build_dir = ".build/%{cfg.system}-%{cfg.architecture}"
 local bin_dir = build_dir .. "/bin/%{cfg.buildcfg}"
 local obj_dir = build_dir .. "/obj/%{cfg.buildcfg}/%{prj.name}"
 
@@ -79,7 +79,7 @@ newaction {
     trigger = "clean",
     description = "Remove all generated build files",
     execute = function()
-        os.rmdir("build")
+        os.rmdir(".build")
         os.rmdir(".cache")
         -- GNU Make
         os.remove("Makefile")
