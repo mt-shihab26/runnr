@@ -66,19 +66,15 @@ Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
 
 #### Dependencies
 
-The web build compiles the game and raylib to WebAssembly with Emscripten, on top of the premake, make and bash tools from the Linux section.
+On Arch Linux, install the tools to build for the web: premake generates the Makefiles from `build.lua`, make and Emscripten (`emcc`) compile the game and raylib to WebAssembly, and bash runs the scripts in `scripts/web`. gcc is not needed, Emscripten brings its own clang, and it pulls in nodejs and python which it runs on.
 
 ```sh
-sudo pacman -S --needed emscripten
+sudo pacman -S --needed git premake make bash emscripten
 ```
 
-The package puts `emcc`, `emmake` and `emrun` in `/usr/lib/emscripten` and adds that folder to `PATH` from `/etc/profile.d/emscripten.sh`. Log out and back in after installing, or add it to the current shell:
+The package puts `emcc`, `emmake` and `emrun` in `/usr/lib/emscripten`, which is only on `PATH` after a new login. The scripts in `scripts/web` add it themselves when `emcc` isn't found, so they work right after installing.
 
-```sh
-export PATH=$PATH:/usr/lib/emscripten
-```
-
-raylib uses its `PLATFORM_WEB` backend with WebGL (OpenGL ES 2), and GLFW comes from Emscripten, so no X11 or OpenGL headers are needed.
+raylib uses its `PLATFORM_WEB` backend with WebGL (OpenGL ES 2), and GLFW comes from Emscripten, so no X11 or OpenGL headers are needed. `scripts/web/dev.sh` also needs a browser with WebGL to open the game in.
 
 #### Building
 
