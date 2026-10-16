@@ -9,12 +9,16 @@ local obj_dir = build_dir .. "/obj/%{cfg.buildcfg}/%{prj.name}"
 
 workspace "runnr"
     configurations { "debug", "release" }
-    architecture "x86_64"
     targetdir(bin_dir)
     objdir(obj_dir)
 
     filter "system:linux"
+        architecture "x86_64"
         toolset "gcc"
+
+    filter "system:emscripten"
+        architecture "wasm32"
+        toolset "emcc"
 
     filter "configurations:debug"
         defines { "DEBUG" }
@@ -40,6 +44,17 @@ project "runnr"
 
     filter "system:linux"
         links { "GL", "m", "pthread", "dl", "rt", "X11" }
+
+    filter "system:emscripten"
+        targetextension ".html"
+        linkoptions {
+            -- GLFW comes from emscripten, not from vendor/upstream/raylib/src/rglfw.c
+            "-sUSE_GLFW=3",
+            "-sALLOW_MEMORY_GROWTH=1",
+            "--shell-file vendor/upstream/raylib/src/minshell.html",
+            -- bundled into runnr.data and mounted at /assets in the browser
+            "--preload-file assets",
+        }
 
     filter "configurations:release"
         postbuildcommands {
@@ -71,6 +86,11 @@ project "raylib"
         files { "vendor/upstream/raylib/src/rglfw.c" }
         includedirs { "vendor/upstream/raylib/src/external/glfw/include" }
         defines { "PLATFORM_DESKTOP_GLFW", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
+
+    filter "system:emscripten"
+        -- raylib's web backend uses EM_ASM, which only compiles in gnu* modes
+        cdialect "gnu99"
+        defines { "PLATFORM_WEB", "GRAPHICS_API_OPENGL_ES2" }
 
     filter {}
 

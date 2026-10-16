@@ -11,6 +11,9 @@ Obstacles come from a recycled object pool, and the game is compiled to WebAssem
     - [Linux](#linux)
         - [Dependencies](#dependencies)
         - [Building](#building)
+    - [Web](#web)
+        - [Dependencies](#dependencies-1)
+        - [Building](#building-1)
 - [Project layout](#project-layout)
 - [License](#license)
 
@@ -58,6 +61,37 @@ scripts/linux/clean.sh     # remove generated build files
 ```
 
 Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
+
+### Web
+
+#### Dependencies
+
+The web build compiles the game and raylib to WebAssembly with Emscripten, on top of the premake, make and bash tools from the Linux section.
+
+```sh
+sudo pacman -S --needed emscripten
+```
+
+The package puts `emcc`, `emmake` and `emrun` in `/usr/lib/emscripten` and adds that folder to `PATH` from `/etc/profile.d/emscripten.sh`. Log out and back in after installing, or add it to the current shell:
+
+```sh
+export PATH=$PATH:/usr/lib/emscripten
+```
+
+raylib uses its `PLATFORM_WEB` backend with WebGL (OpenGL ES 2), and GLFW comes from Emscripten, so no X11 or OpenGL headers are needed.
+
+#### Building
+
+```sh
+scripts/web/dev.sh       # build debug and open it in the browser
+scripts/web/debug.sh     # build debug
+scripts/web/release.sh   # build release
+scripts/linux/clean.sh   # remove generated build files, shared with the Linux build
+```
+
+The page is written to `.build/emscripten-wasm32/bin/<config>/runnr.html`, next to `runnr.js`, `runnr.wasm` and `runnr.data`, which holds the `assets/` folder. Serve the folder over http, `dev.sh` does it with `emrun`, as the page can't load its files when opened directly from disk.
+
+The Linux and web scripts generate the same `Makefile` for their own target, so run either one at any time, they don't need a clean in between.
 
 ## Project layout
 
