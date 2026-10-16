@@ -12,7 +12,7 @@ Camera::Camera() {
 }
 
 void Camera::update(float _) {
-    if (IsKeyPressed(KEY_R)) {
+    if ((IsKeyDown(KEY_LEFT_CONTROL) || IsKeyDown(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_R)) {
         handle_reset();
     }
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
