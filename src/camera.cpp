@@ -13,14 +13,15 @@ Camera::Camera() {
 }
 
 void Camera::update(float dt) {
-    if (GetGestureDetected() == GESTURE_DRAG) {
-        Vector2 drag = GetMouseDelta();
+    // x and z movements
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        Vector2 delta = GetMouseDelta();
 
-        object.position.x += (drag.x);
-        object.position.z += (drag.y);
+        object.position.x -= delta.x * zoom;
+        object.position.z -= delta.y * zoom;
 
-        object.target.x += (drag.x);
-        object.target.z += (drag.y);
+        object.target.x -= delta.x * zoom;
+        object.target.z -= delta.y * zoom;
     }
 }
 

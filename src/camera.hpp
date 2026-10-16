@@ -14,6 +14,7 @@ class Camera {
 
   private:
     Camera3D object;
+    float zoom = 0.025f; // world units per pixel of mouse drag
 };
 
 }
