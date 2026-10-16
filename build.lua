@@ -2,7 +2,8 @@
 -- stop: format
 
 
-local build_dir = ".build/%{cfg.system}-%{cfg.architecture}"
+-- emscripten builds go in .build/web-wasm32, matching scripts/web
+local build_dir = ".build/%{cfg.system == 'emscripten' and 'web' or cfg.system}-%{cfg.architecture}"
 local bin_dir = build_dir .. "/bin/%{cfg.buildcfg}"
 local obj_dir = build_dir .. "/obj/%{cfg.buildcfg}/%{prj.name}"
 

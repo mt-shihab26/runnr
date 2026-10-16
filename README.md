@@ -89,7 +89,7 @@ scripts/web/release.sh   # build release
 scripts/linux/clean.sh   # remove generated build files, shared with the Linux build
 ```
 
-The page is written to `.build/emscripten-wasm32/bin/<config>/runnr.html`, next to `runnr.js`, `runnr.wasm` and `runnr.data`, which holds the `assets/` folder. Serve the folder over http, `dev.sh` does it with `emrun`, as the page can't load its files when opened directly from disk.
+The page is written to `.build/web-wasm32/bin/<config>/runnr.html`, next to `runnr.js`, `runnr.wasm` and `runnr.data`, which holds the `assets/` folder. Serve the folder over http, `dev.sh` does it with `emrun`, as the page can't load its files when opened directly from disk.
 
 The Linux and web scripts generate the same `Makefile` for their own target, so run either one at any time, they don't need a clean in between.
 
