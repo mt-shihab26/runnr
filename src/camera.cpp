@@ -11,6 +11,14 @@ Camera::Camera() {
     set_default();
 }
 
+void Camera::set_default() {
+    object.position = Vector3{0.0f, 10.0f, 10.0f};
+    object.target = Vector3{0.0f, 0.0f, 0.0f};
+    object.up = Vector3{0.0f, 1.0f, 0.0f};
+    object.fovy = 45.0f;
+    object.projection = CAMERA_PERSPECTIVE;
+}
+
 void Camera::update(float _) {
     if ((IsKeyDown(KEY_LEFT_CONTROL) || IsKeyDown(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_R)) {
         handle_reset();
@@ -24,14 +32,6 @@ void Camera::update(float _) {
     if (float wheel = GetMouseWheelMove(); wheel != 0.0f) {
         handle_zoom(wheel);
     }
-}
-
-void Camera::set_default() {
-    object.position = Vector3{0.0f, 10.0f, 10.0f};
-    object.target = Vector3{0.0f, 0.0f, 0.0f};
-    object.up = Vector3{0.0f, 1.0f, 0.0f};
-    object.fovy = 45.0f;
-    object.projection = CAMERA_PERSPECTIVE;
 }
 
 void Camera::handle_reset() {
@@ -88,14 +88,16 @@ void Camera::handle_orbit() {
 
 // Scroll wheel: move the camera toward or away from the target
 void Camera::handle_zoom(float wheel) {
-    constexpr float zoom_step = 0.1f; // fraction of the distance per wheel notch
-    constexpr float min_distance = 3.0f;
-    constexpr float max_distance = 50.0f;
-
     Vector3 offset = Vector3Subtract(object.position, object.target);
-    float distance = Vector3Length(offset);
+    float new_distance = Vector3Length(offset);
 
-    float new_distance = Clamp(distance * (1.0f - wheel * zoom_step), min_distance, max_distance);
+    // Multiply/divide so the distance never reaches zero, no matter how far you zoom
+    if (wheel > 0) {
+        new_distance /= 1.1f;
+    }
+    if (wheel < 0) {
+        new_distance *= 1.1f;
+    }
 
     object.position = Vector3Add(object.target, Vector3Scale(Vector3Normalize(offset), new_distance));
 }
