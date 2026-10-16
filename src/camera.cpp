@@ -21,6 +21,9 @@ void Camera::update(float _) {
     if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
         handle_orbit();
     }
+    if (float wheel = GetMouseWheelMove(); wheel != 0.0f) {
+        handle_zoom(wheel);
+    }
 }
 
 void Camera::set_default() {
@@ -37,16 +40,18 @@ void Camera::handle_reset() {
 
 // Left drag: slide camera and target together along the ground
 void Camera::handle_pan() {
-    constexpr float zoom = 0.025f;
-
     Vector2 delta = GetMouseDelta();
+
+    // World units covered by one pixel at the target's depth, so the ground stays under the cursor at any zoom
+    float distance = Vector3Distance(object.position, object.target);
+    float pan_speed = 2.0f * distance * tanf(object.fovy * 0.5f * DEG2RAD) / GetScreenHeight();
 
     Vector3 forward = Vector3Subtract(object.target, object.position);
     forward.y = 0.0f;
     forward = Vector3Normalize(forward);
     Vector3 right = Vector3{-forward.z, 0.0f, forward.x};
 
-    Vector3 move = Vector3Add(Vector3Scale(right, -delta.x * zoom), Vector3Scale(forward, delta.y * zoom));
+    Vector3 move = Vector3Add(Vector3Scale(right, -delta.x * pan_speed), Vector3Scale(forward, delta.y * pan_speed));
 
     object.position = Vector3Add(object.position, move);
     object.target = Vector3Add(object.target, move);
@@ -79,6 +84,20 @@ void Camera::handle_orbit() {
     };
 
     object.position = Vector3Add(object.target, offset);
+}
+
+// Scroll wheel: move the camera toward or away from the target
+void Camera::handle_zoom(float wheel) {
+    constexpr float zoom_step = 0.1f; // fraction of the distance per wheel notch
+    constexpr float min_distance = 3.0f;
+    constexpr float max_distance = 50.0f;
+
+    Vector3 offset = Vector3Subtract(object.position, object.target);
+    float distance = Vector3Length(offset);
+
+    float new_distance = Clamp(distance * (1.0f - wheel * zoom_step), min_distance, max_distance);
+
+    object.position = Vector3Add(object.target, Vector3Scale(Vector3Normalize(offset), new_distance));
 }
 
 }

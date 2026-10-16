@@ -18,6 +18,7 @@ class Camera {
     void handle_reset();
     void handle_pan();
     void handle_orbit();
+    void handle_zoom(float wheel);
 
     Camera3D object;
 };
