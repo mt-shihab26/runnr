@@ -14,7 +14,7 @@ workspace "runnr"
     objdir(obj_dir)
 
     filter "system:linux"
-        toolset "clang"
+        toolset "gcc"
 
     filter "configurations:debug"
         defines { "DEBUG" }

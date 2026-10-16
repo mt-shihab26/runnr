@@ -36,10 +36,10 @@ The pinned version and commit of each vendored library are listed in `vendor/ver
 
 #### Dependencies
 
-On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and clang (clang++) compile the C++23 game sources and the C99 raylib sources, and bash runs the scripts in `scripts/linux`. gcc is needed as well, because clang uses its C++ standard library (libstdc++).
+On Arch Linux, install the tools to build the project: premake generates the Makefiles from `build.lua`, make and gcc (g++) compile the C++23 game sources and the C99 raylib sources, and bash runs the scripts in `scripts/linux`.
 
 ```sh
-sudo pacman -S --needed git premake make clang gcc bash
+sudo pacman -S --needed git premake make gcc bash
 ```
 
 raylib is built from source along with the game, so it also needs the X11 and OpenGL development headers.
