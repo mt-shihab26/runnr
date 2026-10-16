@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include <raylib/raylib.h>
 
 #include "camera.hpp"
@@ -9,12 +11,16 @@ namespace runnr {
 class Game {
   public:
     void load() {
-        InitWindow(width, height, "runnr.");
+        InitWindow(width, height, title.c_str());
         SetTargetFPS(60);
     }
 
     void unload() {
         CloseWindow();
+    }
+
+    bool running() {
+        return !WindowShouldClose();
     }
 
     void update() {
@@ -41,11 +47,9 @@ class Game {
         EndDrawing();
     }
 
-    bool running() {
-        return !WindowShouldClose();
-    }
-
   private:
+    std::string title = "runnr.";
+
     float width = 1600;
     float height = 900;
 
