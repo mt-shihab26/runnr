@@ -12,7 +12,4 @@ Camera::Camera() {
     object.projection = CAMERA_PERSPECTIVE;        // Camera mode type
 }
 
-Camera::~Camera() {
-}
-
 }

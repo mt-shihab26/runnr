@@ -7,7 +7,6 @@ namespace runnr {
 class Camera {
   public:
     Camera();
-    ~Camera();
 
     Camera3D &get_object() { return object; };
 
