@@ -10,7 +10,7 @@ class Camera {
 
     void update(float dt);
 
-    Camera3D &get_object() { return object; };
+    const Camera3D &get_object() const { return object; }
 
   private:
     void set_default();
