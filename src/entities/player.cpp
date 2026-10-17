@@ -22,17 +22,28 @@ void Player::update(float dt) {
 }
 
 void Player::handle_horizontal_movement(float dt) {
+    float min_lane_x = -4.0f;
+    float max_lane_x = 4.0f;
+
     if (IsKeyPressed(KEY_LEFT)) {
-        if (m_movement_target.x > -4.0f) {
-            m_movement_target.x -= 4.0f;
+        if (m_movement_target.x > min_lane_x) {
+            m_movement_target.x += min_lane_x;
         }
     }
     if (IsKeyPressed(KEY_RIGHT)) {
-        if (m_movement_target.x < 4.0f) {
-            m_movement_target.x += 4.0f;
+        if (m_movement_target.x < max_lane_x) {
+            m_movement_target.x += max_lane_x;
         }
     }
-    m_position = m_movement_target;
+
+    float lange_fps = 1.0f;
+
+    if (m_movement_target.x < m_position.x) {
+        m_position.x -= (lange_fps * dt);
+    }
+    if (m_position.x < m_movement_target.x) {
+        m_position.x += (lange_fps * dt);
+    }
 }
 
 void Player::handle_animation_update(float dt) {
