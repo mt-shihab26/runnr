@@ -7,6 +7,7 @@
 
 #include "entities/camera.hpp"
 #include "entities/floor.hpp"
+#include "entities/menu.hpp"
 #include "entities/player.hpp"
 
 namespace runnr {
@@ -26,10 +27,11 @@ class Game {
     float m_height = 900;
 
     Camera m_camera;
-    Player m_player{m_mode};
     Floor m_floor{m_camera};
+    Menu m_menu{m_mode};
+    Player m_player{m_mode};
 
-    std::vector<Entity *> entities{&m_floor, &m_player, &m_camera};
+    std::vector<Entity *> entities{&m_camera, &m_floor, &m_menu, &m_player};
 };
 
 }
