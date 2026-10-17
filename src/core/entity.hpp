@@ -1,0 +1,15 @@
+#pragma once
+
+#include <raylib/raylib.h>
+
+namespace runnr {
+
+class Entity {
+  public:
+    virtual void load() {}
+    virtual void unload() {}
+    virtual void update([[maybe_unused]] float dt) {}
+    virtual void render() {}
+};
+
+}

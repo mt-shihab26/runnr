@@ -1,7 +1,5 @@
-
 #include <raylib/raylib.h>
 
-#include "log.hpp"
 #include "player.hpp"
 
 namespace runnr {
@@ -9,8 +7,6 @@ namespace runnr {
 void Player::load() {
     model = LoadModel("assets/models/robot.glb");
     animations = LoadModelAnimations("assets/models/robot.glb", &count);
-    for (int i = 0; i < count; i++)
-        log_info("{}: {}", i, animations[i].name);
 }
 
 void Player::unload() {

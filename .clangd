@@ -2,7 +2,7 @@ Diagnostics:
     UnusedIncludes: Strict
 
 InlayHints:
-    ParameterNames: Yes
+    ParameterNames: true
 
 Index:
     Background: Build
