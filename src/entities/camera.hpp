@@ -8,8 +8,7 @@ namespace runnr {
 
 class Camera : public Entity {
   public:
-    Camera();
-
+    void load() override;
     void update(float dt) override;
 
     const Camera3D &get_object() const { return object; }

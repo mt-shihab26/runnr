@@ -7,16 +7,8 @@
 
 namespace runnr {
 
-Camera::Camera() {
+void Camera::load() {
     set_default();
-}
-
-void Camera::set_default() {
-    object.position = Vector3{0.0f, 10.0f, 10.0f};
-    object.target = Vector3{0.0f, 0.0f, 0.0f};
-    object.up = Vector3{0.0f, 1.0f, 0.0f};
-    object.fovy = 45.0f;
-    object.projection = CAMERA_PERSPECTIVE;
 }
 
 void Camera::update(float _) {
@@ -32,6 +24,14 @@ void Camera::update(float _) {
     if (float wheel = GetMouseWheelMove(); wheel != 0.0f) {
         handle_zoom(wheel);
     }
+}
+
+void Camera::set_default() {
+    object.position = Vector3{0.0f, 10.0f, 10.0f};
+    object.target = Vector3{0.0f, 0.0f, 0.0f};
+    object.up = Vector3{0.0f, 1.0f, 0.0f};
+    object.fovy = 45.0f;
+    object.projection = CAMERA_PERSPECTIVE;
 }
 
 void Camera::handle_reset() {
