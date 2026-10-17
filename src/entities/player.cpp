@@ -19,8 +19,20 @@ void Player::unload() {
 }
 
 void Player::update(float dt) {
+    handle_animation_select();
     handle_animation_update(dt);
     handle_horizontal_movement(dt);
+}
+
+void Player::handle_animation_select() {
+    switch (m_mode) {
+    case Mode::PLAY:
+        m_animation_index = PlayerAnimation::ROBOT_RUNNING;
+        break;
+    case Mode::MENU:
+        m_animation_index = PlayerAnimation::ROBOT_IDLE;
+        break;
+    }
 }
 
 void Player::handle_horizontal_movement(float dt) {
