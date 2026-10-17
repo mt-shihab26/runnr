@@ -5,7 +5,7 @@
 namespace runnr {
 
 Game::Game() {
-    entities = {&player, &camera};
+    entities = {&floor, &player, &camera};
 }
 
 void Game::load() {
@@ -41,7 +41,6 @@ void Game::draw() {
     for (Entity *entity : entities) {
         entity->draw();
     }
-    DrawGrid(10, 1.0f);
     EndMode3D();
     for (Entity *entity : entities) {
         entity->ui();
