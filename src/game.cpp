@@ -5,19 +5,21 @@
 namespace runnr {
 
 Game::Game() {
-    entities = {player, camera};
+    entities = {&player, &camera};
 }
 
 void Game::load() {
     InitWindow(width, height, title.c_str());
     SetTargetFPS(60);
-
-    player.load();
+    for (Entity *entity : entities) {
+        entity->load();
+    }
 }
 
 void Game::unload() {
-    player.unload();
-
+    for (Entity *entity : entities) {
+        entity->unload();
+    }
     CloseWindow();
 }
 
@@ -27,28 +29,21 @@ bool Game::running() {
 
 void Game::update() {
     float dt = GetFrameTime();
-
-    camera.update(dt);
-    player.update(dt);
+    for (Entity *entity : entities) {
+        entity->update(dt);
+    }
 }
 
 void Game::render() {
     BeginDrawing();
-
     ClearBackground(RAYWHITE);
-
     BeginMode3D(camera.get_object());
-
-    player.render();
-
+    for (Entity *entity : entities) {
+        entity->render();
+    }
     DrawGrid(10, 1.0f);
-
     EndMode3D();
-
-    DrawText("Welcome to the third dimension!", 10, 40, 20, DARKGRAY);
-
     DrawFPS(10, 10);
-
     EndDrawing();
 }
 

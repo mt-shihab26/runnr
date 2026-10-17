@@ -29,7 +29,7 @@ class Game {
 
     Player player;
 
-    std::vector<Entity> entities;
+    std::vector<Entity *> entities;
 };
 
 }
