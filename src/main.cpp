@@ -10,7 +10,7 @@ static void frame(void *arg) {
     auto *game = static_cast<runnr::Game *>(arg);
 
     game->update();
-    game->render();
+    game->draw();
 }
 
 int main(void) {
