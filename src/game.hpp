@@ -25,9 +25,9 @@ class Game {
     float width = 1600;
     float height = 900;
 
-    Floor floor;
     Camera camera;
     Player player;
+    Floor floor{camera};
 
     std::vector<Entity *> entities{&floor, &player, &camera};
 };
