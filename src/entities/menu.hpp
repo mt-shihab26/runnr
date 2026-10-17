@@ -1,5 +1,7 @@
 #pragma once
 
+#include <raylib/raylib.h>
+
 #include "core/entity.hpp"
 #include "core/mode.hpp"
 
@@ -9,14 +11,15 @@ class Menu : public Entity {
   public:
     Menu(Mode &mode) : m_mode(mode) {};
 
-    void load();
-    void unload();
-    void update(float dt);
-    void draw();
-    void ui();
+    void update(float dt) override;
+    void ui() override;
 
   private:
-    Mode m_mode;
+    Mode &m_mode;
+
+    bool m_play_hovered = false;
+
+    Rectangle get_play_button() const;
 };
 
 }
