@@ -42,6 +42,13 @@ class Player : public Entity {
     int index = PlayerAnimation::ROBOT_JUMP;
     float frame = 0.0f;
     const float fps = 30.0f;
+
+    Vector3 position{0.0f, 0.0f, 0.0f};
+    Vector3 rotation_axis{0.0f, 1.0f, 0.0f};
+    float rotation_angle = 180.0f;
+    Vector3 scale{1.0f, 1.0f, 1.0f};
+
+    ModelAnimation &get_animation() { return animations[index]; }
 };
 
 }

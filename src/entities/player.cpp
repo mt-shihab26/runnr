@@ -17,7 +17,7 @@ void Player::unload() {
 }
 
 void Player::update(float dt) {
-    ModelAnimation animation = animations[index];
+    ModelAnimation &animation = get_animation();
 
     frame += (fps * dt);
     if (animation.keyframeCount <= frame) {
@@ -33,11 +33,10 @@ void Player::update(float dt) {
 }
 
 void Player::draw() {
-    DrawModelEx(model, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 180.0f, (Vector3){1.0f, 1.0f, 1.0f}, WHITE);
+    DrawModelEx(model, position, rotation_axis, rotation_angle, scale, WHITE);
 }
 
 void Player::ui() {
-    DrawText(animations[index].name, 10, 40, 30, GREEN);
+    DrawText(get_animation().name, 10, 40, 30, GREEN);
 }
-
 };
