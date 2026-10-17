@@ -3,6 +3,7 @@
 #include <string>
 
 #include "camera.hpp"
+#include "player.hpp"
 
 namespace runnr {
 
@@ -20,7 +21,9 @@ class Game {
     float width = 1600;
     float height = 900;
 
-    runnr::Camera camera;
+    Camera camera;
+
+    Player player;
 
     Vector3 cubePosition{0.0f, 0.0f, 0.0f};
 };

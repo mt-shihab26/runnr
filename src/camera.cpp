@@ -24,10 +24,10 @@ void Camera::update(float _) {
         handle_reset();
     }
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-        handle_pan();
+        handle_orbit();
     }
     if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-        handle_orbit();
+        handle_pan();
     }
     if (float wheel = GetMouseWheelMove(); wheel != 0.0f) {
         handle_zoom(wheel);

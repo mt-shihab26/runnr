@@ -7,9 +7,13 @@ namespace runnr {
 void Game::load() {
     InitWindow(width, height, title.c_str());
     SetTargetFPS(60);
+
+    player.load();
 }
 
 void Game::unload() {
+    player.unload();
+
     CloseWindow();
 }
 
@@ -21,6 +25,7 @@ void Game::update() {
     float dt = GetFrameTime();
 
     camera.update(dt);
+    player.update(dt);
 }
 
 void Game::render() {
@@ -30,8 +35,7 @@ void Game::render() {
 
     BeginMode3D(camera.get_object());
 
-    DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-    DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+    player.render();
 
     DrawGrid(10, 1.0f);
 
