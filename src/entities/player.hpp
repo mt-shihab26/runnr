@@ -51,6 +51,7 @@ class Player : public Entity {
     ModelAnimation &get_animation() { return animations[index]; }
 
     void handle_animation_update(float dt);
+    void handle_horizontal_movement();
 };
 
 }

@@ -18,6 +18,20 @@ void Player::unload() {
 
 void Player::update(float dt) {
     handle_animation_update(dt);
+    handle_horizontal_movement();
+}
+
+void Player::handle_horizontal_movement() {
+    if (IsKeyPressed(KEY_LEFT)) {
+        if (position.x > -4.0f) {
+            position.x -= 4.0f;
+        }
+    }
+    if (IsKeyPressed(KEY_RIGHT)) {
+        if (position.x < 4.0f) {
+            position.x += 4.0f;
+        }
+    }
 }
 
 void Player::handle_animation_update(float dt) {
