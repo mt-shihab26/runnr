@@ -39,7 +39,7 @@ class Player : public Entity {
     Model m_model;
     int m_animations_count = 0;
     ModelAnimation *m_model_animations = nullptr;
-    int m_animation_index = PlayerAnimation::ROBOT_JUMP;
+    int m_animation_index = PlayerAnimation::ROBOT_RUNNING;
     float m_animation_keyframe = 0.0f;
 
     Vector3 m_movement_target{0.0f, 0.0f, 0.0f};

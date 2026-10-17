@@ -48,11 +48,6 @@ void Player::handle_animation_update(float dt) {
     m_animation_keyframe += (PLAYER_ANIMATION_SPEED * dt);
     if (animation.keyframeCount <= m_animation_keyframe) {
         m_animation_keyframe -= animation.keyframeCount;
-        m_animation_index++;
-    }
-
-    if (m_animations_count <= m_animation_index) {
-        m_animation_index = 0;
     }
 
     UpdateModelAnimation(m_model, animation, m_animation_keyframe);
