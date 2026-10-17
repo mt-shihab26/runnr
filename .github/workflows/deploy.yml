@@ -1,6 +1,7 @@
 # Needs repository secrets (Settings > Secrets and variables > Actions):
-#   CLOUDFLARE_API_TOKEN   API token with the "Account > Cloudflare Pages > Edit" permission
 #   CLOUDFLARE_ACCOUNT_ID  shown on the Workers & Pages overview in the Cloudflare dashboard
+#   CLOUDFLARE_API_TOKEN   Cloudflare dashboard > Manage Account > Account API Tokens > Create Token >
+#                          Custom token, with one permission row: Developer Platform | Cloudflare Pages | Edit
 
 name: Deploy
 
