@@ -32,6 +32,7 @@ class Player : public Entity {
     void unload() override;
     void update(float dt) override;
     void render() override;
+    void ui() override;
 
   private:
     std::string path = project_path("assets/models/player.glb");

@@ -43,6 +43,9 @@ void Game::render() {
     }
     DrawGrid(10, 1.0f);
     EndMode3D();
+    for (Entity *entity : entities) {
+        entity->ui();
+    }
     DrawFPS(10, 10);
     EndDrawing();
 }

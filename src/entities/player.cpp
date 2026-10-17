@@ -33,10 +33,11 @@ void Player::update(float dt) {
 }
 
 void Player::render() {
-    ModelAnimation animation = animations[index];
-
     DrawModelEx(model, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 180.0f, (Vector3){1.0f, 1.0f, 1.0f}, WHITE);
-    DrawText(animation.name, -300, -300, 30, GREEN);
+}
+
+void Player::ui() {
+    DrawText(animations[index].name, 10, 40, 30, GREEN);
 }
 
 };

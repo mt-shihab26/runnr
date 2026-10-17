@@ -12,6 +12,7 @@ class Entity {
     virtual void unload() {}
     virtual void update([[maybe_unused]] float dt) {}
     virtual void render() {}
+    virtual void ui() {}
 };
 
 }
