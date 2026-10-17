@@ -2,28 +2,19 @@
 
 #include <string>
 
-// Returns the directory that asset paths are resolved against.
-//
-// Release: the directory containing the executable, where the build copies the assets folder,
-// so the binary runs from any working directory.
-//
-// Debug: the project root, derived from this header's location (<project>/src/support).
-// The build compiles by relative path, so this is usually an empty string and paths built
-// from it only resolve when running from the project root.
+// Directory assets are loaded from: next to the executable in release, the project root in debug.
 std::string project_dir();
 
-// Returns `relative_path` joined onto the project root.
-//
-//   project_path("assets/shaders/basic.glsl")
+// Joins a path relative to the project root onto project_dir().
 std::string project_path(const std::string &relative_path);
 
-// stb-style implementation: define PATH_IMPLEMENTATION in exactly one .cpp before including this
+// define PATH_IMPLEMENTATION in one .cpp before including this
 #ifdef PATH_IMPLEMENTATION
 
 #include <filesystem>
 
 #if defined(_WIN32)
-// declared by hand: <windows.h> defines CloseWindow, DrawText, etc. which clash with raylib
+// avoids <windows.h>, which clashes with raylib
 extern "C" __declspec(dllimport) unsigned long __stdcall GetModuleFileNameW(void *module, wchar_t *filename, unsigned long size);
 #elif defined(__APPLE__)
 #include <cstdint>
@@ -49,7 +40,6 @@ std::string project_dir() {
 #if defined(NDEBUG)
     return executable_path().parent_path().string();
 #else
-    // lexically_normal() folds away "../" when the header was included through a relative path
     return std::filesystem::path(__FILE__).lexically_normal().parent_path().parent_path().parent_path().string();
 #endif
 }
