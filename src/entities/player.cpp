@@ -2,6 +2,8 @@
 
 #include <raylib/raylib.h>
 
+#include "core/config.hpp"
+
 #include "player.hpp"
 
 namespace runnr {
@@ -22,42 +24,34 @@ void Player::update(float dt) {
 }
 
 void Player::handle_horizontal_movement(float dt) {
-    float min_lane_x = -4.0f;
-    float max_lane_x = 4.0f;
-
     if (IsKeyPressed(KEY_LEFT)) {
-        if (m_movement_target.x > min_lane_x) {
-            m_movement_target.x += min_lane_x;
+        if (m_movement_target.x > LANE_MIN_X) {
+            m_movement_target.x += LANE_MIN_X;
         }
     }
     if (IsKeyPressed(KEY_RIGHT)) {
-        if (m_movement_target.x < max_lane_x) {
-            m_movement_target.x += max_lane_x;
+        if (m_movement_target.x < LANE_MIN_X) {
+            m_movement_target.x += LANE_MIN_X;
         }
     }
-
-    float lange_fps = 1.0f;
-
     if (m_movement_target.x < m_position.x) {
-        m_position.x -= (lange_fps * dt);
+        m_position.x -= (PLAYER_SWITCH_SPEED * dt);
     }
     if (m_position.x < m_movement_target.x) {
-        m_position.x += (lange_fps * dt);
+        m_position.x += (PLAYER_SWITCH_SPEED * dt);
     }
 }
 
 void Player::handle_animation_update(float dt) {
     ModelAnimation &animation = get_animation();
 
-    const float m_fps = 30.0f;
-
-    m_animation_keyframe += (m_fps * dt);
+    m_animation_keyframe += (PLAYER_ANIMATION_SPEED * dt);
     if (animation.keyframeCount <= m_animation_keyframe) {
         m_animation_keyframe -= animation.keyframeCount;
         m_animation_index++;
     }
 
-    if (14 <= m_animation_index) {
+    if (m_animations_count <= m_animation_index) {
         m_animation_index = 0;
     }
 

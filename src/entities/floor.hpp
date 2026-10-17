@@ -1,5 +1,6 @@
 #pragma once
 
+#include "core/config.hpp"
 #include "core/entity.hpp"
 
 #include "entities/camera.hpp"
@@ -19,11 +20,11 @@ class Floor : public Entity {
   private:
     Camera &m_camera;
 
-    Vector3 m_left{-4.0f, 0.0f, 0.0f};
+    Vector3 m_left{LANE_MIN_X, 0.0f, 0.0f};
     Vector3 m_middle{0.0f, 0.0f, 0.0f};
-    Vector3 m_right{4.0f, 0.0f, 0.0f};
+    Vector3 m_right{LANE_MAX_X, 0.0f, 0.0f};
 
-    Vector2 m_size{4.0f, 0};
+    Vector2 m_size{LANE_WIDTH, 0};
 };
 
 }
