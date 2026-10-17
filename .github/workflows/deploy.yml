@@ -1,0 +1,60 @@
+# Needs repository secrets (Settings > Secrets and variables > Actions):
+#   CLOUDFLARE_API_TOKEN   API token with the "Account > Cloudflare Pages > Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID  shown on the Workers & Pages overview in the Cloudflare dashboard
+
+name: Deploy
+
+on:
+  push:
+    branches: [prod]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Arch, like the development machines, so CI builds with the same premake and emscripten.
+    container: archlinux:latest
+    steps:
+      - name: Install build tools
+        run: pacman -Syu --noconfirm --needed git premake make bash emscripten
+
+      # Always build prod, even when started by hand from another branch.
+      # raylib is a submodule, fetch only its pinned commit like the README does.
+      - uses: actions/checkout@v6
+        with:
+          ref: prod
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Build web release
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          scripts/web/release.sh
+
+      # Cloudflare serves index.html at the site root, runnr.html still loads runnr.js/.wasm/.data by name.
+      - name: Prepare site
+        run: |
+          mkdir site
+          cp .build/web-wasm32/bin/release/runnr.{js,wasm,data} site/
+          cp .build/web-wasm32/bin/release/runnr.html site/index.html
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # must match the production branch set on the Cloudflare Pages project, otherwise it's a preview deploy
+          command: pages deploy site --project-name=runnr --branch=prod
