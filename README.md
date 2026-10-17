@@ -97,7 +97,6 @@ include/    game headers
 assets/     models, textures, sounds, fonts and shaders loaded by the game
 vendor/     third-party libraries as git submodules, versions in vendor/versions
 scripts/    build scripts, one folder per platform
-docs/       project notes, docs, plans, etc
 build.lua   premake build definition
 ```
 
