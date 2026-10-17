@@ -58,6 +58,5 @@ void Player::draw() {
 }
 
 void Player::ui() {
-    DrawText(get_animation().name, 10, 40, 30, GREEN);
 }
 };
