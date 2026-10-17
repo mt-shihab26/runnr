@@ -49,6 +49,8 @@ class Player : public Entity {
     Vector3 scale{1.0f, 1.0f, 1.0f};
 
     ModelAnimation &get_animation() { return animations[index]; }
+
+    void handle_animation_update(float dt);
 };
 
 }

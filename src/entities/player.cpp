@@ -17,6 +17,10 @@ void Player::unload() {
 }
 
 void Player::update(float dt) {
+    handle_animation_update(dt);
+}
+
+void Player::handle_animation_update(float dt) {
     ModelAnimation &animation = get_animation();
 
     frame += (fps * dt);
