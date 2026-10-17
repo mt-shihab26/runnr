@@ -11,7 +11,11 @@ void Floor::unload() {}
 void Floor::update([[maybe_unused]] float dt) {}
 
 void Floor::draw() {
-    DrawGrid(10, 1.0f);
+    DrawGrid(12, 1.0f);
+
+    DrawPlane(left, size, RED);
+    DrawPlane(middle, size, GREEN);
+    DrawPlane(right, size, BLUE);
 }
 
 void Floor::ui() {
