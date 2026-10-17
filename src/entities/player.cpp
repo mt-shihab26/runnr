@@ -7,51 +7,54 @@
 namespace runnr {
 
 void Player::load() {
-    model = LoadModel(path.c_str());
-    animations = LoadModelAnimations(path.c_str(), &count);
+    m_model = LoadModel(m_path.c_str());
+    m_model_animations = LoadModelAnimations(m_path.c_str(), &m_animations_count);
 }
 
 void Player::unload() {
-    UnloadModelAnimations(animations, count);
-    UnloadModel(model);
+    UnloadModelAnimations(m_model_animations, m_animations_count);
+    UnloadModel(m_model);
 }
 
 void Player::update(float dt) {
     handle_animation_update(dt);
-    handle_horizontal_movement();
+    handle_horizontal_movement(dt);
 }
 
-void Player::handle_horizontal_movement() {
+void Player::handle_horizontal_movement(float dt) {
     if (IsKeyPressed(KEY_LEFT)) {
-        if (position.x > -4.0f) {
-            position.x -= 4.0f;
+        if (m_movement_target.x > -4.0f) {
+            m_movement_target.x -= 4.0f;
         }
     }
     if (IsKeyPressed(KEY_RIGHT)) {
-        if (position.x < 4.0f) {
-            position.x += 4.0f;
+        if (m_movement_target.x < 4.0f) {
+            m_movement_target.x += 4.0f;
         }
     }
+    m_position = m_movement_target;
 }
 
 void Player::handle_animation_update(float dt) {
     ModelAnimation &animation = get_animation();
 
-    frame += (fps * dt);
-    if (animation.keyframeCount <= frame) {
-        frame -= animation.keyframeCount;
-        index++;
+    const float m_fps = 30.0f;
+
+    m_animation_keyframe += (m_fps * dt);
+    if (animation.keyframeCount <= m_animation_keyframe) {
+        m_animation_keyframe -= animation.keyframeCount;
+        m_animation_index++;
     }
 
-    if (14 <= index) {
-        index = 0;
+    if (14 <= m_animation_index) {
+        m_animation_index = 0;
     }
 
-    UpdateModelAnimation(model, animation, frame);
+    UpdateModelAnimation(m_model, animation, m_animation_keyframe);
 }
 
 void Player::draw() {
-    DrawModelEx(model, position, rotation_axis, rotation_angle, scale, WHITE);
+    DrawModelEx(m_model, m_position, m_rotation_axis, m_rotation_angle, m_scale, WHITE);
 }
 
 void Player::ui() {

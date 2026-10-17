@@ -35,23 +35,24 @@ class Player : public Entity {
     void ui() override;
 
   private:
-    std::string path = project_path("assets/models/player.glb");
-    Model model;
-    int count = 0;
-    ModelAnimation *animations = nullptr;
-    int index = PlayerAnimation::ROBOT_JUMP;
-    float frame = 0.0f;
-    const float fps = 30.0f;
+    std::string m_path = project_path("assets/models/player.glb");
+    Model m_model;
+    int m_animations_count = 0;
+    ModelAnimation *m_model_animations = nullptr;
+    int m_animation_index = PlayerAnimation::ROBOT_JUMP;
+    float m_animation_keyframe = 0.0f;
 
-    Vector3 position{0.0f, 0.0f, 0.0f};
-    Vector3 rotation_axis{0.0f, 1.0f, 0.0f};
-    float rotation_angle = 180.0f;
-    Vector3 scale{1.0f, 1.0f, 1.0f};
+    Vector3 m_movement_target{0.0f, 0.0f, 0.0f};
 
-    ModelAnimation &get_animation() { return animations[index]; }
+    Vector3 m_position{0.0f, 0.0f, 0.0f};
+    Vector3 m_rotation_axis{0.0f, 1.0f, 0.0f};
+    float m_rotation_angle = 180.0f;
+    Vector3 m_scale{1.0f, 1.0f, 1.0f};
+
+    ModelAnimation &get_animation() { return m_model_animations[m_animation_index]; }
 
     void handle_animation_update(float dt);
-    void handle_horizontal_movement();
+    void handle_horizontal_movement(float dt);
 };
 
 }
