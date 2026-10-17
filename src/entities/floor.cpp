@@ -14,9 +14,11 @@ void Floor::update([[maybe_unused]] float dt) {
 void Floor::draw() {
     float z = m_camera.get_object().position.z;
 
+    constexpr float thickness = 1.0f;
+
     rlDrawRenderBatchActive();
     rlDisableBackfaceCulling();
-    DrawPlane(Vector3{0.0f, 0.0f, z}, m_size, FLOOR_COLOR);
+    DrawCube(Vector3{0.0f, -thickness / 2.0f, z}, m_size.x, thickness, m_size.y, FLOOR_COLOR);
     rlDrawRenderBatchActive();
     rlEnableBackfaceCulling();
 
