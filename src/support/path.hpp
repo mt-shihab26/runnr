@@ -21,24 +21,18 @@ extern "C" __declspec(dllimport) unsigned long __stdcall GetModuleFileNameW(void
 #include <mach-o/dyld.h>
 #endif
 
-static std::filesystem::path executable_path() {
-#if defined(_WIN32)
+std::string project_dir() {
+#if defined(NDEBUG) && defined(_WIN32)
     wchar_t buffer[260];
     GetModuleFileNameW(nullptr, buffer, 260);
-    return buffer;
-#elif defined(__APPLE__)
+    return std::filesystem::path(buffer).parent_path().string();
+#elif defined(NDEBUG) && defined(__APPLE__)
     char buffer[4096];
     uint32_t size = sizeof(buffer);
     _NSGetExecutablePath(buffer, &size);
-    return std::filesystem::canonical(buffer);
-#else
-    return std::filesystem::canonical("/proc/self/exe");
-#endif
-}
-
-std::string project_dir() {
-#if defined(NDEBUG)
-    return executable_path().parent_path().string();
+    return std::filesystem::canonical(buffer).parent_path().string();
+#elif defined(NDEBUG)
+    return std::filesystem::canonical("/proc/self/exe").parent_path().string();
 #else
     return std::filesystem::path(__FILE__).lexically_normal().parent_path().parent_path().parent_path().string();
 #endif
