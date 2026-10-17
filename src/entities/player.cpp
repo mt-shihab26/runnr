@@ -32,7 +32,7 @@ void Player::update(float dt) {
     UpdateModelAnimation(model, animation, frame);
 }
 
-void Player::render() {
+void Player::draw() {
     DrawModelEx(model, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 180.0f, (Vector3){1.0f, 1.0f, 1.0f}, WHITE);
 }
 

@@ -34,12 +34,12 @@ void Game::update() {
     }
 }
 
-void Game::render() {
+void Game::draw() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
     BeginMode3D(camera.get_object());
     for (Entity *entity : entities) {
-        entity->render();
+        entity->draw();
     }
     DrawGrid(10, 1.0f);
     EndMode3D();

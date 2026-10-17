@@ -31,7 +31,7 @@ class Player : public Entity {
     void load() override;
     void unload() override;
     void update(float dt) override;
-    void render() override;
+    void draw() override;
     void ui() override;
 
   private:

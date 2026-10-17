@@ -17,7 +17,7 @@ class Game {
     void unload();
     bool running();
     void update();
-    void render();
+    void draw();
 
   private:
     std::string title = "runnr.";
