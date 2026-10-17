@@ -13,8 +13,6 @@ namespace runnr {
 
 class Game {
   public:
-    Game();
-
     void load();
     void unload();
     bool running();
