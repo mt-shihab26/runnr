@@ -1,3 +1,5 @@
+#include <initializer_list>
+
 #include <raylib/raylib.h>
 #include <raylib/rlgl.h>
 
@@ -5,20 +7,19 @@
 
 namespace runnr {
 
-void Floor::load() {}
-
-void Floor::unload() {}
-
 void Floor::update([[maybe_unused]] float dt) {
     m_size.y = 2.0f * static_cast<float>(rlGetCullDistanceFar());
 }
 
 void Floor::draw() {
-    DrawPlane(Vector3{m_left.x, m_left.y, m_camera.get_object().position.z}, m_size, RED);
-    DrawPlane(m_middle, m_size, GREEN);
-    DrawPlane(m_right, m_size, BLUE);
+    float z = m_camera.get_object().position.z;
+
+    DrawPlane(Vector3{0.0f, 0.0f, z}, m_size, FLOOR_COLOR);
+
+    float half = m_size.y / 2.0f;
+    for (float x : {LANE_MIN_X / 2.0f, LANE_MAX_X / 2.0f}) {
+        DrawLine3D(Vector3{x, 0.01f, z - half}, Vector3{x, 0.01f, z + half}, LANE_LINE_COLOR);
+    }
 }
 
-void Floor::ui() {
-}
 }

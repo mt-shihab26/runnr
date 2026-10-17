@@ -2,6 +2,8 @@
 
 #include <raylib/raylib.h>
 
+#include "core/config.hpp"
+
 namespace runnr {
 
 void Game::load() {
@@ -32,7 +34,7 @@ void Game::update() {
 
 void Game::draw() {
     BeginDrawing();
-    ClearBackground(RAYWHITE);
+    ClearBackground(BACKGROUND_COLOR);
     BeginMode3D(camera.get_object());
     for (Entity *entity : entities) {
         entity->draw();
