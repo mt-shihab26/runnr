@@ -2,7 +2,8 @@
 
 #include <string>
 
-// Directory assets are loaded from: next to the executable in release, the project root in debug.
+// Directory assets are loaded from: next to the executable in release, the project root in debug,
+// and the root of the virtual filesystem on the web.
 std::string project_dir();
 
 // Joins a path relative to the project root onto project_dir().
@@ -22,7 +23,10 @@ extern "C" __declspec(dllimport) unsigned long __stdcall GetModuleFileNameW(void
 #endif
 
 std::string project_dir() {
-#if defined(NDEBUG) && defined(_WIN32)
+#if defined(__EMSCRIPTEN__)
+    // --preload-file assets mounts them at /assets in the browser's virtual filesystem
+    return "/";
+#elif defined(NDEBUG) && defined(_WIN32)
     wchar_t buffer[260];
     GetModuleFileNameW(nullptr, buffer, 260);
     return std::filesystem::path(buffer).parent_path().string();
