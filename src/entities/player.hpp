@@ -38,7 +38,7 @@ class Player : public Entity {
     Model model;
     int count = 0;
     ModelAnimation *animations = nullptr;
-    int index = PlayerAnimation::ROBOT_IDLE;
+    int index = PlayerAnimation::ROBOT_JUMP;
     float frame = 0.0f;
     const float fps = 30.0f;
 };

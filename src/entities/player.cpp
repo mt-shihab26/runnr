@@ -20,14 +20,23 @@ void Player::update(float dt) {
     ModelAnimation animation = animations[index];
 
     frame += (fps * dt);
-    if (animation.keyframeCount <= frame)
+    if (animation.keyframeCount <= frame) {
         frame -= animation.keyframeCount;
+        index++;
+    }
+
+    if (14 <= index) {
+        index = 0;
+    }
 
     UpdateModelAnimation(model, animation, frame);
 }
 
 void Player::render() {
+    ModelAnimation animation = animations[index];
+
     DrawModelEx(model, (Vector3){0.0f, 0.0f, 0.0f}, (Vector3){0.0f, 1.0f, 0.0f}, 180.0f, (Vector3){1.0f, 1.0f, 1.0f}, WHITE);
+    DrawText(animation.name, -300, -300, 30, GREEN);
 }
 
 };
