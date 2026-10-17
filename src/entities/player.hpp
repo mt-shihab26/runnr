@@ -2,6 +2,8 @@
 
 #include <raylib/raylib.h>
 
+#include "core/entity.hpp"
+
 namespace runnr {
 
 enum PlayerAnimation {
@@ -21,12 +23,12 @@ enum PlayerAnimation {
     ROBOT_YES = 13,
 };
 
-class Player {
+class Player : public Entity {
   public:
-    void load();
-    void unload();
-    void update(float dt);
-    void render();
+    void load() override;
+    void unload() override;
+    void update(float dt) override;
+    void render() override;
 
   private:
     Model model;

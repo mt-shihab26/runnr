@@ -1,7 +1,9 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
+#include "core/entity.hpp"
 #include "entities/camera.hpp"
 #include "entities/player.hpp"
 
@@ -9,6 +11,8 @@ namespace runnr {
 
 class Game {
   public:
+    Game();
+
     void load();
     void unload();
     bool running();
@@ -25,7 +29,7 @@ class Game {
 
     Player player;
 
-    Vector3 cubePosition{0.0f, 0.0f, 0.0f};
+    std::vector<Entity> entities;
 };
 
 }

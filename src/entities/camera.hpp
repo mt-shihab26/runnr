@@ -2,13 +2,15 @@
 
 #include <raylib/raylib.h>
 
+#include "core/entity.hpp"
+
 namespace runnr {
 
-class Camera {
+class Camera : public Entity {
   public:
     Camera();
 
-    void update(float dt);
+    void update(float dt) override;
 
     const Camera3D &get_object() const { return object; }
 

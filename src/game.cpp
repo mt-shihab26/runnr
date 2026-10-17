@@ -4,6 +4,10 @@
 
 namespace runnr {
 
+Game::Game() {
+    entities = {player, camera};
+}
+
 void Game::load() {
     InitWindow(width, height, title.c_str());
     SetTargetFPS(60);
