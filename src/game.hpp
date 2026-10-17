@@ -31,7 +31,7 @@ class Game {
     Camera camera;
     Player player;
 
-    std::vector<Entity *> entities;
+    std::vector<Entity *> entities{&floor, &player, &camera};
 };
 
 }
