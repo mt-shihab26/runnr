@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "camera.hpp"
-#include "player.hpp"
+#include "entities/camera.hpp"
+#include "entities/player.hpp"
 
 namespace runnr {
 
