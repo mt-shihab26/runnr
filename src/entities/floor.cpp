@@ -14,7 +14,11 @@ void Floor::update([[maybe_unused]] float dt) {
 void Floor::draw() {
     float z = m_camera.get_object().position.z;
 
+    rlDrawRenderBatchActive();
+    rlDisableBackfaceCulling();
     DrawPlane(Vector3{0.0f, 0.0f, z}, m_size, FLOOR_COLOR);
+    rlDrawRenderBatchActive();
+    rlEnableBackfaceCulling();
 
     float half = m_size.y / 2.0f;
     for (float x : {LANE_MIN_X / 2.0f, LANE_MAX_X / 2.0f}) {
