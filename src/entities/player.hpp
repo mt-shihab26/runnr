@@ -1,8 +1,11 @@
 #pragma once
 
+#include <string>
+
 #include <raylib/raylib.h>
 
 #include "core/entity.hpp"
+#include "support/path.hpp"
 
 namespace runnr {
 
@@ -31,6 +34,7 @@ class Player : public Entity {
     void render() override;
 
   private:
+    std::string path = project_path("assets/models/player.glb");
     Model model;
     int count = 0;
     ModelAnimation *animations = nullptr;

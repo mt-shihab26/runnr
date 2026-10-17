@@ -1,3 +1,5 @@
+#include <string>
+
 #include <raylib/raylib.h>
 
 #include "player.hpp"
@@ -5,8 +7,8 @@
 namespace runnr {
 
 void Player::load() {
-    model = LoadModel("assets/models/player.glb");
-    animations = LoadModelAnimations("assets/models/player.glb", &count);
+    model = LoadModel(path.c_str());
+    animations = LoadModelAnimations(path.c_str(), &count);
 }
 
 void Player::unload() {
