@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include <vector>
 
 #include "core/entity.hpp"
@@ -22,8 +21,6 @@ class Game {
 
   private:
     Mode m_mode = Mode::MENU;
-
-    std::string m_title = "runnr.";
 
     float m_width = 1600;
     float m_height = 900;

@@ -7,7 +7,7 @@
 namespace runnr {
 
 void Game::load() {
-    InitWindow(m_width, m_height, m_title.c_str());
+    InitWindow(m_width, m_height, GAME_TITLE);
     SetTargetFPS(60);
     for (Entity *entity : entities) {
         entity->load();
