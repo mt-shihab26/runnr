@@ -26,8 +26,8 @@ void Menu::ui() {
     }
 
     constexpr int font_size = 60;
-    constexpr Color color = {234, 88, 12, 255};        // orange, matches the player
-    constexpr Color hover_color = {249, 115, 22, 255}; // lighter orange
+    constexpr Color color = {234, 88, 12, 255};
+    constexpr Color hover_color = {249, 115, 22, 255};
     constexpr Color text_color = {255, 255, 255, 255};
 
     Rectangle button = get_play_button();
@@ -43,7 +43,7 @@ void Menu::ui() {
 Rectangle Menu::get_play_button() const {
     constexpr float width = 360.0f;
     constexpr float height = 120.0f;
-    constexpr float offset_y = 150.0f; // push below the center
+    constexpr float offset_y = 150.0f;
 
     float x = (GetScreenWidth() - width) / 2.0f;
     float y = (GetScreenHeight() - height) / 2.0f + offset_y;
