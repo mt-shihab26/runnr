@@ -30,8 +30,8 @@ void Player::handle_horizontal_movement(float dt) {
         }
     }
     if (IsKeyPressed(KEY_RIGHT)) {
-        if (m_movement_target.x < LANE_MIN_X) {
-            m_movement_target.x += LANE_MIN_X;
+        if (m_movement_target.x < LANE_MAX_X) {
+            m_movement_target.x += LANE_MAX_X;
         }
     }
     if (m_movement_target.x < m_position.x) {
