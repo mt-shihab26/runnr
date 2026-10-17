@@ -7,7 +7,7 @@
 namespace runnr {
 
 void Game::load() {
-    InitWindow(width, height, title.c_str());
+    InitWindow(m_width, m_height, m_title.c_str());
     SetTargetFPS(60);
     for (Entity *entity : entities) {
         entity->load();
@@ -35,7 +35,7 @@ void Game::update() {
 void Game::draw() {
     BeginDrawing();
     ClearBackground(BACKGROUND_COLOR);
-    BeginMode3D(camera.get_object());
+    BeginMode3D(m_camera.get_object());
     for (Entity *entity : entities) {
         entity->draw();
     }

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "core/entity.hpp"
+#include "core/mode.hpp"
 
 #include "entities/camera.hpp"
 #include "entities/floor.hpp"
@@ -20,16 +21,18 @@ class Game {
     void draw();
 
   private:
-    std::string title = "runnr.";
+    Mode m_mode = Mode::MENU;
 
-    float width = 1600;
-    float height = 900;
+    std::string m_title = "runnr.";
 
-    Camera camera;
-    Player player;
-    Floor floor{camera};
+    float m_width = 1600;
+    float m_height = 900;
 
-    std::vector<Entity *> entities{&floor, &player, &camera};
+    Camera m_camera;
+    Player m_player{m_mode};
+    Floor m_floor{m_camera};
+
+    std::vector<Entity *> entities{&m_floor, &m_player, &m_camera};
 };
 
 }

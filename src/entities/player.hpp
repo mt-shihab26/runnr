@@ -5,6 +5,7 @@
 #include <raylib/raylib.h>
 
 #include "core/entity.hpp"
+#include "core/mode.hpp"
 #include "support/path.hpp"
 
 namespace runnr {
@@ -28,6 +29,8 @@ enum PlayerAnimation {
 
 class Player : public Entity {
   public:
+    Player(Mode &mode) : m_mode(mode) {};
+
     void load() override;
     void unload() override;
     void update(float dt) override;
@@ -35,6 +38,8 @@ class Player : public Entity {
     void ui() override;
 
   private:
+    Mode &m_mode;
+
     std::string m_path = project_path("assets/models/player.glb");
     Model m_model;
     int m_animations_count = 0;
