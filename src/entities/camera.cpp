@@ -11,7 +11,7 @@ void Camera::load() {
     set_default();
 }
 
-void Camera::update(float _) {
+void Camera::update([[maybe_unused]] float dt) {
     if ((IsKeyDown(KEY_LEFT_CONTROL) || IsKeyDown(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_R)) {
         handle_reset();
     }

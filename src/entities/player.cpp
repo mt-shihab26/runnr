@@ -5,8 +5,8 @@
 namespace runnr {
 
 void Player::load() {
-    model = LoadModel("assets/models/robot.glb");
-    animations = LoadModelAnimations("assets/models/robot.glb", &count);
+    model = LoadModel("assets/models/player.glb");
+    animations = LoadModelAnimations("assets/models/player.glb", &count);
 }
 
 void Player::unload() {
