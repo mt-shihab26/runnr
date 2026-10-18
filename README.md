@@ -74,14 +74,11 @@ sudo pacman -S --needed git premake make bash emscripten librsvg noto-fonts
 #### Building
 
 ```sh
-scripts/web/release.sh
+scripts/web/serve.sh     # build release, serve it and open it in the browser
+scripts/web/release.sh   # build release
 ```
 
-The page is written to `.build/web-wasm32/bin/release/runnr.html`. Serve it over http, as it can't load its files from disk:
-
-```sh
-emrun .build/web-wasm32/bin/release/runnr.html
-```
+The page is written to `.build/web-wasm32/bin/release/runnr.html`. It must be served over http, as it can't load its files from disk. `serve.sh` serves it at [localhost:8080/runnr.html](http://localhost:8080/runnr.html) with `bunx http-server`.
 
 ## License
 
