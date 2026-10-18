@@ -17,7 +17,7 @@ jobs:
     container: archlinux:latest
     steps:
       - name: Install build tools
-        run: pacman -Syu --noconfirm --needed git premake make bash emscripten
+        run: pacman -Syu --noconfirm --needed git premake make bash emscripten librsvg noto-fonts
 
       # Always build prod, even when started by hand from another branch.
       # raylib is a submodule, fetch only its pinned commit like the README does.
@@ -38,6 +38,7 @@ jobs:
           mkdir site
           cp .build/web-wasm32/bin/release/runnr.{js,wasm,data} site/
           cp .build/web-wasm32/bin/release/favicon.{svg,ico} site/
+          cp .build/web-wasm32/bin/release/preview.png site/
           cp .build/web-wasm32/bin/release/runnr.html site/index.html
 
       - uses: actions/upload-artifact@v4

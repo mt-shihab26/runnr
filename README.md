@@ -68,10 +68,10 @@ Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
 
 #### Dependencies
 
-On Arch Linux, install the tools to build for the web: premake generates the Makefiles from `build.lua`, make and Emscripten (`emcc`) compile the game and raylib to WebAssembly, and bash runs the scripts in `scripts/web`. gcc is not needed, Emscripten brings its own clang, and it pulls in nodejs and python which it runs on.
+On Arch Linux, install the tools to build for the web: premake generates the Makefiles from `build.lua`, make and Emscripten (`emcc`) compile the game and raylib to WebAssembly, bash runs the scripts in `scripts/web`, and librsvg (`rsvg-convert`) renders the share preview image `scripts/web/preview.svg` to PNG in release builds, using the Noto Sans font. gcc is not needed, Emscripten brings its own clang, and it pulls in nodejs and python which it runs on.
 
 ```sh
-sudo pacman -S --needed git premake make bash emscripten
+sudo pacman -S --needed git premake make bash emscripten librsvg noto-fonts
 ```
 
 The package puts `emcc`, `emmake` and `emrun` in `/usr/lib/emscripten`, which is only on `PATH` after a new login. The scripts in `scripts/web` add it themselves when `emcc` isn't found, so they work right after installing.

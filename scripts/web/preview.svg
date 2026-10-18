@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+    <rect width="1200" height="630" fill="#0f172a" />
+    <polygon points="700,630 1260,630 995,210 965,210" fill="#334155" />
+    <g stroke="#64748b" stroke-width="6" stroke-dasharray="36 28">
+        <line x1="887" y1="630" x2="975" y2="210" />
+        <line x1="1073" y1="630" x2="985" y2="210" />
+    </g>
+    <g font-family="Noto Sans" fill="#f8fafc">
+        <text x="80" y="300" font-size="150" font-weight="700">runnr.</text>
+        <text x="84" y="380" font-size="40" fill="#cbd5e1">A 3D endless runner game</text>
+        <text x="84" y="430" font-size="40" fill="#cbd5e1">written in C/C++ with raylib.</text>
+        <text x="84" y="540" font-size="30" fill="#64748b">runnr.developershihab.com</text>
+    </g>
+</svg>

@@ -58,6 +58,11 @@ project "runnr"
             "{COPYFILE} scripts/web/favicon.ico %{cfg.targetdir}",
         }
 
+    filter { "system:emscripten", "configurations:release" }
+        postbuildcommands {
+            "rsvg-convert scripts/web/preview.svg -o %{cfg.targetdir}/preview.png",
+        }
+
     filter "configurations:release"
         postbuildcommands {
             "{DELETE} %{cfg.targetdir}/*.a",
