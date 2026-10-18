@@ -5,7 +5,7 @@
         <line x1="887" y1="630" x2="975" y2="210" />
         <line x1="1073" y1="630" x2="985" y2="210" />
     </g>
-    <g font-family="Noto Sans" fill="#f8fafc">
+    <g font-family="Noto Sans, sans-serif" fill="#f8fafc">
         <text x="80" y="300" font-size="150" font-weight="700">runnr.</text>
         <text x="84" y="380" font-size="40" fill="#cbd5e1">A 3D endless runner game</text>
         <text x="84" y="430" font-size="40" fill="#cbd5e1">written in C/C++ with raylib.</text>

@@ -6,6 +6,8 @@ Obstacles come from a recycled object pool, and the game is compiled to WebAssem
 
 Play it at [runnr.developershihab.com](https://runnr.developershihab.com/).
 
+[![runnr.](scripts/web/preview.svg)](https://runnr.developershihab.com/)
+
 <!--toc:start-->
 
 - [Getting started](#getting-started)
