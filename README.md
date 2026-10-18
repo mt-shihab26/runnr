@@ -57,6 +57,7 @@ scripts/linux/dev.sh       # build debug and run
 scripts/linux/debug.sh     # build debug
 scripts/linux/release.sh   # build release
 scripts/linux/clean.sh     # remove generated build files
+scripts/linux/format.sh    # format sources with clang-format
 ```
 
 Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.

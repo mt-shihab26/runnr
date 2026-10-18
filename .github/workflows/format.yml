@@ -21,11 +21,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      # Only our sources, vendor/ keeps its upstream formatting.
       - name: Format code
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git ls-files -z 'src/*.cpp' 'src/*.hpp' | xargs -0 clang-format -i
+          scripts/linux/format.sh
 
       - name: Commit Changes
         uses: stefanzweifel/git-auto-commit-action@v7
