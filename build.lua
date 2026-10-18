@@ -48,17 +48,14 @@ project "runnr"
     filter "system:emscripten"
         targetextension ".html"
         linkoptions {
-            -- GLFW comes from emscripten, not from vendor/upstream/raylib/src/rglfw.c
             "-sUSE_GLFW=3",
             "-sALLOW_MEMORY_GROWTH=1",
             "--shell-file vendor/upstream/raylib/src/minshell.html",
-            -- bundled into runnr.data and mounted at /assets in the browser
             "--preload-file assets",
         }
 
     filter "configurations:release"
         postbuildcommands {
-            -- the static libraries are linked into the binary, so they are not needed to run it
             "{DELETE} %{cfg.targetdir}/*.a",
         }
 
@@ -88,7 +85,6 @@ project "raylib"
         defines { "PLATFORM_DESKTOP_GLFW", "GRAPHICS_API_OPENGL_33", "_GLFW_X11" }
 
     filter "system:emscripten"
-        -- raylib's web backend uses EM_ASM, which only compiles in gnu* modes
         cdialect "gnu99"
         defines { "PLATFORM_WEB", "GRAPHICS_API_OPENGL_ES2" }
 
@@ -101,24 +97,19 @@ newaction {
     execute = function()
         os.rmdir(".build")
         os.rmdir(".cache")
-        -- GNU Make
         os.remove("Makefile")
         os.remove("*.make")
-        -- Visual Studio
         os.remove("*.sln")
         os.remove("*.slnx")
         os.remove("*.vcxproj")
         os.remove("*.vcxproj.filters")
         os.remove("*.vcxproj.user")
         os.rmdir(".vs")
-        -- Xcode
         for _, dir in ipairs(os.matchdirs("*.xcodeproj")) do os.rmdir(dir) end
         for _, dir in ipairs(os.matchdirs("*.xcworkspace")) do os.rmdir(dir) end
-        -- Ninja
         os.remove("*.ninja")
         os.remove(".ninja_deps")
         os.remove(".ninja_log")
-        -- CodeLite
         os.remove("*.workspace")
         os.remove("*.project")
     end,
