@@ -4,7 +4,7 @@
 
 namespace runnr {
 
-inline constexpr const char *GAME_TITLE = "runnr.";
+inline constexpr const char *GAME_TITLE = "runnr. - A 3D endless runner game written in C/C++ with raylib.";
 
 inline constexpr float LANE_WIDTH = 4.0f;
 inline constexpr float LANE_MIN_X = -LANE_WIDTH;
