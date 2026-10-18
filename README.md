@@ -78,18 +78,15 @@ sudo pacman -S --needed git premake make bash emscripten librsvg noto-fonts
 
 The package puts `emcc`, `emmake` and `emrun` in `/usr/lib/emscripten`, which is only on `PATH` after a new login. The scripts in `scripts/web` add it themselves when `emcc` isn't found, so they work right after installing.
 
-raylib uses its `PLATFORM_WEB` backend with WebGL (OpenGL ES 2), and GLFW comes from Emscripten, so no X11 or OpenGL headers are needed. `scripts/web/dev.sh` also needs a browser with WebGL to open the game in.
+raylib uses its `PLATFORM_WEB` backend with WebGL (OpenGL ES 2), and GLFW comes from Emscripten, so no X11 or OpenGL headers are needed. The game needs a browser with WebGL to play in.
 
 #### Building
 
 ```sh
-scripts/web/dev.sh       # build debug and open it in the browser
-scripts/web/debug.sh     # build debug
 scripts/web/release.sh   # build release
-scripts/linux/clean.sh   # remove generated build files, shared with the Linux build
 ```
 
-The page is written to `.build/web-wasm32/bin/<config>/runnr.html`, next to `runnr.js`, `runnr.wasm` and `runnr.data`, which holds the `assets/` folder. Serve the folder over http, `dev.sh` does it with `emrun`, as the page can't load its files when opened directly from disk.
+The page is written to `.build/web-wasm32/bin/release/runnr.html`, next to `runnr.js`, `runnr.wasm` and `runnr.data`, which holds the `assets/` folder. Serve the folder over http, for example with `emrun .build/web-wasm32/bin/release/runnr.html`, as the page can't load its files when opened directly from disk.
 
 The Linux and web scripts generate the same `Makefile` for their own target, so run either one at any time, they don't need a clean in between.
 

@@ -6,6 +6,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 
 command -v emcc >/dev/null || export PATH="$PATH:/usr/lib/emscripten"
 
-scripts/web/generate.sh
+premake5 --file=build.lua --os=emscripten gmake "$@"
 
 emmake make config=release -j"$(nproc)" "$@"
