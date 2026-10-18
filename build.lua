@@ -95,22 +95,6 @@ newaction {
     trigger = "clean",
     description = "Remove all generated build files",
     execute = function()
-        os.rmdir(".build")
-        os.rmdir(".cache")
-        os.remove("Makefile")
-        os.remove("*.make")
-        os.remove("*.sln")
-        os.remove("*.slnx")
-        os.remove("*.vcxproj")
-        os.remove("*.vcxproj.filters")
-        os.remove("*.vcxproj.user")
-        os.rmdir(".vs")
-        for _, dir in ipairs(os.matchdirs("*.xcodeproj")) do os.rmdir(dir) end
-        for _, dir in ipairs(os.matchdirs("*.xcworkspace")) do os.rmdir(dir) end
-        os.remove("*.ninja")
-        os.remove(".ninja_deps")
-        os.remove(".ninja_log")
-        os.remove("*.workspace")
-        os.remove("*.project")
+        os.execute("git clean -fdX")
     end,
 }
