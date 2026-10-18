@@ -4,9 +4,9 @@ A 3D endless runner game written in C/C++ with raylib.
 
 Obstacles come from a recycled object pool, and the game is compiled to WebAssembly with Emscripten so it can be played in the browser.
 
-Play it at [runnr.developershihab.com](https://runnr.developershihab.com/).
+Play it at [runnr.developershihab.com](https://runnr.developershihab.com).
 
-[![runnr.](scripts/web/preview.svg)](https://runnr.developershihab.com/)
+[![runnr.](scripts/web/preview.svg)](https://runnr.developershihab.com)
 
 <!--toc:start-->
 
@@ -78,7 +78,7 @@ scripts/web/serve.sh     # build release, serve it and open it in the browser
 scripts/web/release.sh   # build release
 ```
 
-The page is written to `.build/web-wasm32/bin/release/runnr.html`. It must be served over http, as it can't load its files from disk. `serve.sh` serves it at [localhost:8080/runnr.html](http://localhost:8080/runnr.html) with `bunx http-server`.
+The page is written to `.build/web-wasm32/bin/release/runnr.html`. It must be served over http, as it can't load its files from disk. `serve.sh` serves it at [localhost:8080/runnr.html](http://localhost:8080/runnr.html) using [Bun](https://bun.com), so install it first.
 
 ## License
 
