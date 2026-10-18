@@ -53,6 +53,10 @@ project "runnr"
             "--shell-file scripts/web/shell.html",
             "--preload-file assets",
         }
+        postbuildcommands {
+            "{COPYFILE} scripts/web/favicon.svg %{cfg.targetdir}",
+            "{COPYFILE} scripts/web/favicon.ico %{cfg.targetdir}",
+        }
 
     filter "configurations:release"
         postbuildcommands {
