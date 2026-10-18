@@ -41,8 +41,10 @@ Keep `--single-branch`, without it raylib takes about 260 MB instead of about 54
 On Arch Linux:
 
 ```sh
-sudo pacman -S --needed git premake make gcc bash
+sudo pacman -S --needed git premake make gcc bash clang
 ```
+
+`clang` provides [clang-format](https://clang.llvm.org/docs/ClangFormat.html), used by `scripts/linux/format.sh`.
 
 raylib is built from source along with the game, so it also needs the X11 and OpenGL headers:
 
