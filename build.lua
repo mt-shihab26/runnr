@@ -50,7 +50,7 @@ project "runnr"
         linkoptions {
             "-sUSE_GLFW=3",
             "-sALLOW_MEMORY_GROWTH=1",
-            "--shell-file vendor/upstream/raylib/src/minshell.html",
+            "--shell-file scripts/web/shell.html",
             "--preload-file assets",
         }
 
