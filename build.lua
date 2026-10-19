@@ -14,11 +14,13 @@ workspace "runnr"
 
     filter "system:linux"
         architecture "x86_64"
-        toolset "gcc"
+        toolset "clang"
+        defines { "PLATFORM_LINUX" }
 
     filter "system:emscripten"
         architecture "wasm32"
         toolset "emcc"
+        defines { "PLATFORM_WEB" }
 
     filter "configurations:debug"
         defines { "DEBUG" }

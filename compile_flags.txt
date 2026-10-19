@@ -6,3 +6,4 @@
 -Wall
 -Wextra
 -DDEBUG
+-DPLATFORM_LINUX

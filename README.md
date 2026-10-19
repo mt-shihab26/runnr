@@ -10,10 +10,11 @@ Play it at [runnr.developershihab.com](https://runnr.developershihab.com).
 
 <!--toc:start-->
 
+- [Platforms](#platforms)
 - [Getting started](#getting-started)
-    - [Cloning](#cloning)
     - [Linux](#linux)
         - [Dependencies](#dependencies)
+        - [Cloning](#cloning)
         - [Building](#building)
     - [Web](#web)
         - [Dependencies](#dependencies-1)
@@ -22,9 +23,40 @@ Play it at [runnr.developershihab.com](https://runnr.developershihab.com).
 
 <!--toc:end-->
 
+## Platforms
+
+| Platform | Architecture | Compiler  | Standard library | Define           |
+| -------- | ------------ | --------- | ---------------- | ---------------- |
+| Linux    | x86_64       | `clang++` | libstdc++ (GCC)  | `PLATFORM_LINUX` |
+| Web      | wasm32       | `emcc`    | libc++           | `PLATFORM_WEB`   |
+
+On the web, Emscripten's `emcc` is built on Clang, so both builds use Clang.
+
 ## Getting started
 
-### Cloning
+### Linux
+
+#### Dependencies
+
+- [`git`](https://git-scm.com) clones the repository and raylib
+- [`premake`](https://premake.github.io) is Premake 5, its `premake5` command generates the Makefiles from `build.lua`
+- [`make`](https://www.gnu.org/software/make) builds the generated Makefiles
+- [`clang`](https://clang.llvm.org) is the compiler, and provides [clang-format](https://clang.llvm.org/docs/ClangFormat.html) for `scripts/linux/format.sh` and [clangd](https://clangd.llvm.org) for editors
+- [`gcc`](https://gcc.gnu.org) provides [libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++), the C++ standard library Clang uses on Linux
+- [`bash`](https://www.gnu.org/software/bash) runs the scripts in `scripts/linux/`
+- [X11](https://www.x.org) and [OpenGL](https://www.opengl.org) headers, as raylib is built from source along with the game
+
+On Arch Linux:
+
+```sh
+# project
+sudo pacman -S --needed git premake make clang gcc bash
+
+# raylib
+sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
+```
+
+#### Cloning
 
 ```sh
 git clone https://github.com/mt-shihab26/runnr.git
@@ -34,35 +66,20 @@ git submodule update --init --recursive --depth 1 --single-branch
 
 Keep `--single-branch`, without it raylib takes about 260 MB instead of about 54 MB.
 
-### Linux
-
-#### Dependencies
-
-On Arch Linux:
-
-```sh
-sudo pacman -S --needed git premake make gcc bash clang
-```
-
-`clang` provides [clang-format](https://clang.llvm.org/docs/ClangFormat.html), used by `scripts/linux/format.sh`.
-
-raylib is built from source along with the game, so it also needs the X11 and OpenGL headers:
-
-```sh
-sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
-```
-
 #### Building
 
 ```sh
-scripts/linux/dev.sh       # build debug and run
-scripts/linux/debug.sh     # build debug
-scripts/linux/release.sh   # build release
-scripts/linux/clean.sh     # remove generated build files
-scripts/linux/format.sh    # format sources with clang-format
+scripts/linux/dev.sh        # build debug and run
+scripts/linux/debug.sh      # build debug
+scripts/linux/release.sh    # build release
+scripts/linux/generate.sh   # generate the Makefiles only
+scripts/linux/clean.sh      # remove generated build files
+scripts/linux/format.sh     # format sources with clang-format
 ```
 
 Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
+
+`scripts/linux/debug.json` is a debugger launch configuration that builds debug and starts the game, used by [my Neovim setup](https://github.com/mt-shihab26/dotfiles).
 
 ### Web
 
@@ -74,6 +91,8 @@ On Arch Linux, with librsvg and Noto Sans to render the share preview `scripts/w
 sudo pacman -S --needed git premake make bash emscripten librsvg noto-fonts
 ```
 
+`serve.sh` also needs [Bun](https://bun.com).
+
 #### Building
 
 ```sh
@@ -81,7 +100,7 @@ scripts/web/serve.sh     # build release, serve it and open it in the browser
 scripts/web/release.sh   # build release
 ```
 
-The page is written to `.build/web-wasm32/bin/release/runnr.html`. It must be served over http, as it can't load its files from disk. `serve.sh` serves it at [localhost:8080/runnr.html](http://localhost:8080/runnr.html) using [Bun](https://bun.com), so install it first.
+The page is written to `.build/web-wasm32/bin/release/runnr.html`. It must be served over http, as it can't load its files from disk. `serve.sh` serves it at [localhost:8080/runnr.html](http://localhost:8080/runnr.html).
 
 ## License
 
