@@ -97,9 +97,14 @@ Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
 
 On Arch Linux:
 
-```sh
-sudo pacman -S --needed git premake make emscripten librsvg noto-fonts bun
-```
+- for the project:
+    ```sh
+    sudo pacman -S --needed git premake make emscripten
+    ```
+- for the share preview and serving:
+    ```sh
+    sudo pacman -S --needed librsvg noto-fonts bun
+    ```
 
 #### Building
 
