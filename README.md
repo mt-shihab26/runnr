@@ -49,13 +49,14 @@ Only the game includes dependency headers, raylib is built from source as a stat
 
 On Arch Linux:
 
-```sh
-# project
-sudo pacman -S --needed git premake make clang gcc
-
-# raylib
-sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
-```
+- for the project:
+    ```sh
+    sudo pacman -S --needed git premake make clang gcc
+    ```
+- for raylib:
+    ```sh
+    sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
+    ```
 
 #### Cloning
 
