@@ -1,9 +1,0 @@
--xc++
--std=c++23
--Isrc
--Iinclude
--Ivendor/include
--Wall
--Wextra
--DDEBUG
--DPLATFORM_LINUX
