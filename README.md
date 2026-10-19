@@ -25,12 +25,14 @@ Play it at [runnr.developershihab.com](https://runnr.developershihab.com).
 
 ## Platforms
 
-| Platform | Architecture | Compiler  | Standard library | Define           |
-| -------- | ------------ | --------- | ---------------- | ---------------- |
-| Linux    | x86_64       | `clang++` | libstdc++ (GCC)  | `PLATFORM_LINUX` |
-| Web      | wasm32       | `emcc`    | libc++           | `PLATFORM_WEB`   |
+| Platform | Architecture | Compiler  | Standard library    | Build system        | Define           |
+| -------- | ------------ | --------- | ------------------- | ------------------- | ---------------- |
+| Linux    | x86_64       | `clang++` | libstdc++ (GCC)     | GNU Make            | `PLATFORM_LINUX` |
+| Web      | wasm32       | `emcc`    | libc++ (Emscripten) | GNU Make (`emmake`) | `PLATFORM_WEB`   |
 
-On the web, Emscripten's `emcc` is built on Clang, so both builds use Clang.
+On Linux, Clang uses GCC's libstdc++ headers and library by default. On the web, Emscripten's `emcc` is built on Clang and uses the libc++ headers and library that come with Emscripten, so both builds use Clang.
+
+Only the game includes dependency headers, raylib is built from source as a static library and linked into it.
 
 ## Getting started
 
@@ -43,14 +45,13 @@ On the web, Emscripten's `emcc` is built on Clang, so both builds use Clang.
 - [`make`](https://www.gnu.org/software/make) builds the generated Makefiles
 - [`clang`](https://clang.llvm.org) is the compiler, and provides [clang-format](https://clang.llvm.org/docs/ClangFormat.html) for `scripts/linux/format.sh` and [clangd](https://clangd.llvm.org) for editors
 - [`gcc`](https://gcc.gnu.org) provides [libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++), the C++ standard library Clang uses on Linux
-- [`bash`](https://www.gnu.org/software/bash) runs the scripts in `scripts/linux/`
 - [X11](https://www.x.org) and [OpenGL](https://www.opengl.org) headers, as raylib is built from source along with the game
 
 On Arch Linux:
 
 ```sh
 # project
-sudo pacman -S --needed git premake make clang gcc bash
+sudo pacman -S --needed git premake make clang gcc
 
 # raylib
 sudo pacman -S --needed libx11 libxrandr libxinerama libxcursor libxi mesa
@@ -85,13 +86,19 @@ Binaries are written to `.build/linux-x86_64/bin/<config>/runnr`.
 
 #### Dependencies
 
-On Arch Linux, with librsvg and Noto Sans to render the share preview `scripts/web/preview.svg` to PNG:
+- [`git`](https://git-scm.com) clones the repository and raylib
+- [`premake`](https://premake.github.io) is Premake 5, its `premake5` command generates the Makefiles from `build.lua`
+- [`make`](https://www.gnu.org/software/make) builds the generated Makefiles
+- [`emscripten`](https://emscripten.org) is the compiler, its `emcc` compiles to WebAssembly and `emmake` runs `make` with it
+- [`librsvg`](https://gitlab.gnome.org/GNOME/librsvg) provides `rsvg-convert`, which renders the share preview `scripts/web/preview.svg` to PNG
+- [`noto-fonts`](https://fonts.google.com/noto) provides Noto Sans, the font of the share preview
+- [`bun`](https://bun.com) runs the http server in `scripts/web/serve.sh`
+
+On Arch Linux:
 
 ```sh
-sudo pacman -S --needed git premake make bash emscripten librsvg noto-fonts
+sudo pacman -S --needed git premake make emscripten librsvg noto-fonts bun
 ```
-
-`serve.sh` also needs [Bun](https://bun.com).
 
 #### Building
 
